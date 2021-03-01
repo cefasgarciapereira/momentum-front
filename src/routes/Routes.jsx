@@ -1,4 +1,3 @@
-import { useContext } from 'react';
 import { 
     BrowserRouter, 
     Route, 
@@ -7,10 +6,10 @@ import {
 } from 'react-router-dom';
 import Login from 'pages/Login';
 import Home from 'pages/Home';
-import SessionContext from 'contexts/session';
+import { useSession } from 'contexts/session'
 
 const PrivateRoute = ({component: Component, ...rest}) => {
-    const { user } = useContext(SessionContext);
+    const { user } = useSession();
 
     return(
         <Route {...rest} render={ props => 

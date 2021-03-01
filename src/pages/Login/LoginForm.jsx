@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { 
     TextField, 
     Box,
@@ -6,7 +6,7 @@ import {
     CircularProgress,
     FormHelperText
 } from '@material-ui/core';
-import SessionContext from 'contexts/session';
+import { useSession } from 'contexts/session';
 import { useHistory } from 'react-router-dom';
 
 const initialState = {
@@ -15,7 +15,7 @@ const initialState = {
 }
 
 export default function LoginForm(){
-    const { login, error, user } = useContext(SessionContext);
+    const { login, error, user } = useSession();
     const [values, setValues] = useState(initialState);
     const [loading, setLoading] = useState(false);
     const history = useHistory();

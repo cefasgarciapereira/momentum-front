@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import {
@@ -18,8 +18,8 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import MenuIcon from '@material-ui/icons/Menu';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import SessionContext from 'contexts/session';
 import { generateAvatar } from 'utils/helper';
+import { useSession } from 'contexts/session';
 
 const drawerWidth = 240;
 
@@ -86,7 +86,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function MiniDrawer({children}) {
-  const { user, logout } = useContext(SessionContext);
+  const { user, logout } = useSession();
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
