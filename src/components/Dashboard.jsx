@@ -1,23 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Avatar from '@material-ui/core/Avatar';
-import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import {
+  Avatar,
+  Drawer,
+  AppBar,
+  Toolbar,
+  List,
+  CssBaseline,
+  Typography,
+  Divider,
+  IconButton,
+  ListItemIcon,
+  ListItem
+} from '@material-ui/core';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import MenuIcon from '@material-ui/icons/Menu';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import SessionContext from 'contexts/session';
+import { generateAvatar } from 'utils/helper';
 
 const drawerWidth = 240;
 
@@ -84,6 +86,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function MiniDrawer({children}) {
+  const { user, logout } = useContext(SessionContext);
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -143,8 +146,15 @@ export default function MiniDrawer({children}) {
         <Divider />
         <List>
             <ListItem style={{gap: '1rem'}}>
-                <Avatar>UT</Avatar>
-                <Typography>Usuário Teste</Typography>
+                <Avatar>{generateAvatar(user.name)}</Avatar>
+                <Typography>{user.name}</Typography>
+            </ListItem>
+            <Divider />
+            <ListItem button style={{gap: '1rem'}} onClick={logout}>
+                <ListItemIcon>
+                  <ExitToAppIcon/>
+                </ListItemIcon>
+                <Typography>Sair</Typography>
             </ListItem>
         </List>
       </Drawer>

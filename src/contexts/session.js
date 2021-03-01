@@ -6,10 +6,21 @@ const SessionContext = createContext();
 //const BASE_URL = process.env.NODE_ENV === 'development' ? 'https://homolog-momentum-api.herokuapp.com' : 'https://homolog-momentum-api.herokuapp.com'
 const BASE_URL = 'https://homolog-momentum-api.herokuapp.com'
 
-
 export const SessionProvider = ({children}) => {
     const [user, setUser] = useState(null);
     const [error, setError] = useState(false);
+
+    useEffect(() => {
+        const cookieLogin = () => {
+            try{
+                const cookieUser = localStorage.getItem('@momentum:user');
+                setUser(JSON.parse(cookieUser))
+            }catch(err){
+                console.log('Cookie Login: ',err)
+            }
+        }
+        cookieLogin();
+    },[])
 
     useEffect(() => {
         const remindUser = () => {
@@ -32,8 +43,14 @@ export const SessionProvider = ({children}) => {
             setError(false);
         })
         .catch(err => {
+            console.log(err);
             setError(err.response.data.error ? err.response.data.error : `${err.name}: ${err.message}`)
         })
+    }
+
+    const logout = () => {
+        setUser(null);
+        localStorage.clear();
     }
     
     return(
@@ -41,7 +58,8 @@ export const SessionProvider = ({children}) => {
         value={{
             user,
             error,
-            login
+            login,
+            logout
         }}>
             {children}
         </SessionContext.Provider>
