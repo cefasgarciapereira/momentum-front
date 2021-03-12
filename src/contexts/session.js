@@ -8,7 +8,8 @@ import axios from 'axios';
 const SessionContext = createContext();
 
 //const BASE_URL = process.env.REACT_APP_ENV === 'prod'? 'https://homolog-momentum-api.herokuapp.com' : 'https://homolog-momentum-api.herokuapp.com';
-const BASE_URL = 'https://homolog-momentum-api.herokuapp.com'
+//const BASE_URL = 'https://homolog-momentum-api.herokuapp.com'
+const BASE_URL = 'http://localhost:9000'
 
 const SessionProvider = ({children}) => {
     const [user, setUser] = useState(null);
@@ -57,18 +58,21 @@ const SessionProvider = ({children}) => {
         localStorage.clear();
     }
 
-    const fetchApi = async (endpoint, method="GET", params={}) => {
-        const config = {
-            headers: { Authorization: `Bearer ${user.token}` }
-        };
-
+    const fetchApi = async (endpoint, bodyParams={}, method="GET") => {
+        
         if(method==="GET"){
-            const response = await axios.get(`${BASE_URL}/${endpoint}/auth`, config)
+            const response = await axios.get(`${BASE_URL}/${endpoint}`, {
+                headers: { Authorization: `Bearer ${user.token}` },
+                params: {...bodyParams}
+            })
             return response;
         }
 
         if(method==="POST"){
-            const response = await axios.post(`${BASE_URL}/${endpoint}/auth`, params, config)
+            const response = await axios.post(`${BASE_URL}/${endpoint}`, {
+                headers: { Authorization: `Bearer ${user.token}` },
+                params: bodyParams,
+            })
             return response;
         }
     }
