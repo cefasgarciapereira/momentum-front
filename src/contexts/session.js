@@ -8,7 +8,8 @@ import axios from 'axios';
 const SessionContext = createContext();
 
 //const BASE_URL = process.env.REACT_APP_ENV === 'prod'? 'https://homolog-momentum-api.herokuapp.com' : 'https://homolog-momentum-api.herokuapp.com';
-const BASE_URL = process.env.NODE_ENV === "development" ? 'http://localhost:9000' : 'https://homolog-momentum-api.herokuapp.com'
+//const BASE_URL = process.env.NODE_ENV === "development" ? 'http://localhost:9000' : 'https://homolog-momentum-api.herokuapp.com'
+const BASE_URL = 'https://homolog-momentum-api.herokuapp.com'
 
 const SessionProvider = ({children}) => {
     const [user, setUser] = useState(null);
