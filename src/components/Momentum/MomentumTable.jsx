@@ -28,7 +28,6 @@ export default function MomentumTable() {
         setLoading(true);
         fetchApi('strategy')
             .then(response => {
-                console.log('USE EFFECT: ', response.data.strategies[0])
                 setData(response.data.strategies[0])
                 setLoading(false);
             })
