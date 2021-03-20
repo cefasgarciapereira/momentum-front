@@ -4,12 +4,12 @@ import {
     useEffect, 
     useContext 
 } from 'react';
+import jwt_decode from "jwt-decode";
 import axios from 'axios';
 const SessionContext = createContext();
 
-//const BASE_URL = process.env.REACT_APP_ENV === 'prod'? 'https://homolog-momentum-api.herokuapp.com' : 'https://homolog-momentum-api.herokuapp.com';
-//const BASE_URL = process.env.NODE_ENV === "development" ? 'http://localhost:9000' : 'https://homolog-momentum-api.herokuapp.com'
-const BASE_URL = 'https://homolog-momentum-api.herokuapp.com'
+//const BASE_URL = 'https://homolog-momentum-api.herokuapp.com'
+const BASE_URL = 'http://192.168.191.202:9000'
 
 const SessionProvider = ({children}) => {
     const [user, setUser] = useState(null);
@@ -44,6 +44,9 @@ const SessionProvider = ({children}) => {
     const login = async (credentials) => {
         await axios.post(`${BASE_URL}/user/login`, {...credentials})
         .then(async response => {
+            const decoded = jwt_decode(response.data.token);
+            console.log('TOKEN', response.data.token);
+            console.log("DECODED", decoded);
             setUser({...response.data.user, token: response.data.token});
             setError(false);
         })
@@ -53,13 +56,7 @@ const SessionProvider = ({children}) => {
         })
     }
 
-    const logout = () => {
-        setUser(null);
-        localStorage.clear();
-    }
-
-    const fetchApi = async (endpoint, bodyParams={}, method="GET") => {
-        
+    const fetchApi = async (endpoint, bodyParams={}, method="GET") => {        
         if(method==="GET"){
             const response = await axios.get(`${BASE_URL}/${endpoint}`, {
                 headers: { Authorization: `Bearer ${user.token}` },
@@ -69,12 +66,20 @@ const SessionProvider = ({children}) => {
         }
 
         if(method==="POST"){
-            const response = await axios.post(`${BASE_URL}/${endpoint}`, {
+            
+            const config = {
                 headers: { Authorization: `Bearer ${user.token}` },
-                params: bodyParams,
-            })
+            }
+
+            const response = await axios.post(`${BASE_URL}/${endpoint}`, bodyParams, config)
             return response;
         }
+    }
+
+    const logout = async () => {
+        setUser(null);
+        localStorage.clear();
+        await fetchApi('user/logout', {id: user._id}, "POST")
     }
     
     return(
