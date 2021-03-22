@@ -65,8 +65,6 @@ export default function LoginForm(){
                 Entrar
             </Button>
             
-            <FormHelperText error>{error}</FormHelperText>
-
             <Button
             fullWidth
             label="Entrar"
@@ -75,6 +73,7 @@ export default function LoginForm(){
             >
                 Cadastrar
             </Button>
+            <FormHelperText error>{error}</FormHelperText>
         </Box>
 
     )

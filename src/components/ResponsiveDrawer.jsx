@@ -13,9 +13,12 @@ import {
   ListItemIcon,
   Typography,
   Toolbar
-} from '@material-ui/core'
+} from '@material-ui/core';
+import { Link } from 'react-router-dom'; 
+import TimelineOutlinedIcon from '@material-ui/icons/TimelineOutlined';
 import MenuIcon from '@material-ui/icons/Menu';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import DescriptionIcon from '@material-ui/icons/Description';
 import { generateAvatar } from 'utils/helper';
 import { useSession } from 'contexts/session';
 import { useTheme } from '@material-ui/core/styles';
@@ -44,7 +47,18 @@ function ResponsiveDrawer(props) {
       </List>
       <Divider />
       <List>
-        <ListItem button style={{gap: '1rem'}} onClick={logout}>
+        <ListItem component={Link}  to='/home' style={{gap: '1rem', textDecoration: 'none'}}>
+          <ListItemIcon><TimelineOutlinedIcon/></ListItemIcon>
+            <Typography>Momentum</Typography>
+        </ListItem>
+        <ListItem component={Link}  to='/blog' style={{gap: '1rem', textDecoration: 'none'}}>
+          <ListItemIcon><DescriptionIcon/></ListItemIcon>
+            <Typography>Blog</Typography>
+        </ListItem>
+      </List>
+      <Divider />
+      <List>
+        <ListItem button style={{gap: '1rem'}} onClick={logout} active>
           <ListItemIcon><ExitToAppIcon/></ListItemIcon>
           <Typography>Sair</Typography>
         </ListItem>

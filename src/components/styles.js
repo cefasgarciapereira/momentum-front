@@ -42,3 +42,43 @@ export const useDrawerStyles =  makeStyles((theme) => ({
     padding: theme.spacing(3),
   },
 }));
+
+export const useRichTextStyles = makeStyles((theme) => ({
+  container:{
+    '& h1':{
+      fontSize: '5rem',
+      margin: 0
+
+    },
+    '& h2':{
+      fontSize: '4rem',
+      margin: 0
+
+    },
+    '& h3':{
+      fontSize: '3rem',
+      margin: 0
+    },
+    '& h4':{
+      fontSize: '2rem',
+      margin: 0
+
+    },
+    '& h5':{
+      fontSize: '1.4rem',
+      margin: 0
+
+    },
+    '& h6':{
+      fontSize: '1rem',
+      margin: 0
+    },
+    '& p, li, ol, pre':{
+      fontSize: '1.2rem',
+      lineHeight: '1.8rem',
+    },
+    '& li, ol':{
+      margin: '1rem 0'
+    }
+  }
+}))

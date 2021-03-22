@@ -4,6 +4,7 @@ import { Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import Routes from './routes';
 import { SessionProvider } from 'contexts/session';
+import { SnackbarProvider } from 'notistack';
 import './index.css';
 
 const history = createBrowserHistory();
@@ -11,9 +12,11 @@ const history = createBrowserHistory();
 ReactDOM.render(
   <React.StrictMode>
     <SessionProvider>
-      <Router history={history}>
-        <Routes />
-      </Router>
+      <SnackbarProvider anchorOrigin={{vertical: 'top', horizontal: 'right'}} autoHideDuration={3000}>
+        <Router history={history}>
+          <Routes />
+        </Router>
+      </SnackbarProvider>
     </SessionProvider>
   </React.StrictMode>,
   document.getElementById('root')

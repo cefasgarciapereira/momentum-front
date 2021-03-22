@@ -14,11 +14,13 @@ import {
 import FilterListIcon from '@material-ui/icons/FilterList';
 import FilterDialog from './FilterDialog';
 import { useSession } from 'contexts/session';
-import { parseDate, capitalize } from 'utils/helper';
+import { useSnackbar } from 'notistack';
+import { capitalize } from 'utils/helper';
 import { useMomenutumStyles } from './styles';
 
 export default function MomentumTable() {
     const classes = useMomenutumStyles();
+    const { enqueueSnackbar } = useSnackbar();
     const { fetchApi } = useSession();
     const [data, setData] = useState();
     const [filter, setFilter] = useState(false);
@@ -41,8 +43,12 @@ export default function MomentumTable() {
         setLoading(true);
         fetchApi('strategy/search', query)
             .then(response => {
-                console.log('FILTER: ', response.data.strategy)
-                setData(response.data.strategy)
+                console.log(response.data.strategy)
+                if(!response.data.strategy){
+                    enqueueSnackbar('Essa estratégia não foi encontrada 😔', {variant: "info"})
+                }else{
+                    setData(response.data.strategy)
+                }
                 setLoading(false);
             })
             .catch(err => {
@@ -56,10 +62,10 @@ export default function MomentumTable() {
         <Box>
             {
                 data &&
-                <Box fullWidth display="flex" alignItems="center"style={{gap: '1rem'}}>
-                <h2>{capitalize(data.type)}</h2>
-                <h2>{data.universe}</h2>
-                <h2>{parseDate(data.date)}</h2>
+                <Box fullWidth display="flex" alignItems="center" style={{ gap: '1rem' }}>
+                    <h2>{capitalize(data.type)}</h2>
+                    <h2>{data.universe}</h2>
+                    <h2>{data.date}</h2>
                 </Box>
             }
             <TableContainer className={classes.container} component={Paper}>
@@ -78,9 +84,9 @@ export default function MomentumTable() {
                                 <TableCell component="th" scope="row">
                                     {row.stock}
                                 </TableCell>
-                                <TableCell align="left">{row.signal}</TableCell>
-                                <TableCell align="left">{row.risk_budgeting}</TableCell>
-                                <TableCell align="left">{row.risk_parity}</TableCell>
+                                <TableCell align="left">{parseFloat(row.signal).toFixed(2)}</TableCell>
+                                <TableCell align="left">{parseFloat(row.risk_budgeting).toFixed(2)}</TableCell>
+                                <TableCell align="left">{parseFloat(row.risk_parity).toFixed(2)}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>

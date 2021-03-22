@@ -9,7 +9,7 @@ import axios from 'axios';
 const SessionContext = createContext();
 
 //const BASE_URL = 'https://homolog-momentum-api.herokuapp.com'
-const BASE_URL = 'http://192.168.191.202:9000'
+const BASE_URL = process.env.NODE_ENV==='development' ? 'http://localhost:9000' : 'https://homolog-momentum-api.herokuapp.com'
 
 const SessionProvider = ({children}) => {
     const [user, setUser] = useState(null);
@@ -52,7 +52,11 @@ const SessionProvider = ({children}) => {
         })
         .catch(err => {
             console.log(err);
-            setError(err.response.data.error ? err.response.data.error : `${err.name}: ${err.message}`)
+            try{
+                setError(err.response.data.error ? err.response.data.error : `${err.name}: ${err.message}`);
+            }catch(err){
+                setError(`${err}`);
+            }
         })
     }
 
@@ -80,6 +84,7 @@ const SessionProvider = ({children}) => {
         setUser(null);
         localStorage.clear();
         await fetchApi('user/logout', {id: user._id}, "POST")
+        window.location = "/"
     }
     
     return(

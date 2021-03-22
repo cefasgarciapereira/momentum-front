@@ -11,11 +11,12 @@ import {
     MenuItem,
     Select,
     Button
-} from '@material-ui/core'
+} from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 
 const initialState = {
     type: "momentum",
+    universe: 'IBOV',
     look_back: 12,
     port_size: 15
 }
@@ -31,7 +32,7 @@ export default function FilterDialog(props) {
             open={visible}>
             <DialogTitle>
                 <Box style={{ width: '100%', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                    Filtrar Tabela
+                    Buscar Estratégia
                     <IconButton
                         onClick={handleClose}
                         aria-label="close">
@@ -49,6 +50,19 @@ export default function FilterDialog(props) {
                         onChange={(e) => setValues({ ...values, type: e.target.value })}
                     >
                         <MenuItem value="momentum">Momentum</MenuItem>
+                    </Select>
+                </FormControl>
+
+                <FormControl fullWidth>
+                    <InputLabel id="universe">Universo</InputLabel>
+                    <Select
+                        labelId="universe"
+                        id="universe-select"
+                        value={values.universe}
+                        onChange={(e) => setValues({ ...values, universe: e.target.value })}
+                    >
+                        <MenuItem value="IBOV">Ibovespa</MenuItem>
+                        <MenuItem value="IBRA">Ibra</MenuItem>
                     </Select>
                 </FormControl>
 

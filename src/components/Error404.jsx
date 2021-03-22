@@ -1,5 +1,9 @@
+import ResponsiveDrawer from './ResponsiveDrawer';
+
 export default function Error404(){
     return(
-        <h1>Página não encontrada.</h1>
+        <ResponsiveDrawer>
+            <h2>Página não encontrada.</h2>
+        </ResponsiveDrawer>
     )
 }

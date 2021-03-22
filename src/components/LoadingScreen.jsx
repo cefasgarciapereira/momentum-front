@@ -1,5 +1,7 @@
+import { LinearProgress } from '@material-ui/core';
+
 export default function LoadingScreen(){
     return(
-        <h1>Carregando...</h1>
+        <LinearProgress />
     )
 }

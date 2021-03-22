@@ -12,9 +12,16 @@ export const parseDate = (date) => {
 
     const hZeros = (n) => n < 10 ? `0${n}` : n
 
-    return `${hZeros(d.getDay())}/${hZeros(d.getMonth())}/${d.getFullYear()}`
+    return `${hZeros(d.getDate())}/${hZeros(d.getMonth())}/${d.getFullYear()}`
 }
 
 export const capitalize = ( word ) => {
     return word.replace(/\b\w/g, function(l){ return l.toUpperCase() })
+}
+
+export const capitalizeSlug = (slug) => {
+    const subs = slug.split(',')
+    let newSlug = ''
+    subs.forEach(sub => newSlug = newSlug+' '+capitalize(sub))
+    return newSlug.replaceAll('-',' ');
 }
