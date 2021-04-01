@@ -30,6 +30,7 @@ export default function MomentumTable() {
         setLoading(true);
         fetchApi('strategy')
             .then(response => {
+                console.log(response.data.strategies[0])
                 setData(response.data.strategies[0])
                 setLoading(false);
             })
@@ -74,8 +75,7 @@ export default function MomentumTable() {
                         <TableRow>
                             <TableCell>Ação</TableCell>
                             <TableCell align="left">Sinal</TableCell>
-                            <TableCell align="left">Risco Budget</TableCell>
-                            <TableCell align="left">Risco Parity</TableCell>
+                            <TableCell align="left">Peso por Risk Parity</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -85,8 +85,7 @@ export default function MomentumTable() {
                                     {row.stock}
                                 </TableCell>
                                 <TableCell align="left">{parseFloat(row.signal).toFixed(2)}</TableCell>
-                                <TableCell align="left">{parseFloat(row.risk_budgeting).toFixed(2)}</TableCell>
-                                <TableCell align="left">{parseFloat(row.risk_parity).toFixed(2)}</TableCell>
+                                <TableCell align="left">{parseFloat(row.['Risk Parity']*100).toFixed(2)}%</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>

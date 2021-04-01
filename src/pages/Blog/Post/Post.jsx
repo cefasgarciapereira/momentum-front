@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getPostById, getAuthor } from 'utils/blog';
-import { PrismicText } from 'components';
+import { PrismicText, LoadingScreen } from 'components';
 import { Box, Typography, Tooltip, Avatar } from '@material-ui/core';
 import { usePostStyles } from './styles';
 
@@ -26,7 +26,7 @@ export default function Post(){
         .catch(err => console.log(err))
     },[id])
 
-    if(!post || !author) return(<h2>Carregando...</h2>)
+    if(!post || !author) return <LoadingScreen/>
 
     return(
         <Box className={classes.container}>
