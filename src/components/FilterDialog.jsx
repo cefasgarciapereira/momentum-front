@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {
     Box,
     DialogTitle,
@@ -13,17 +12,16 @@ import {
     Button
 } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
-
-const initialState = {
-    type: "momentum",
-    universe: 'IBOV',
-    look_back: 12,
-    port_size: 15
-}
+import { useStrategy } from 'contexts/strategy';
 
 export default function FilterDialog(props) {
-    const { visible, handleClose, handleSubmit } = props;
-    const [values, setValues] = useState(initialState);
+    const { visible, handleClose } = props;
+    const { filter, setFilter, applyFilter } = useStrategy();
+
+    const submit = () => {
+        applyFilter()
+        handleClose()
+    }
 
     return (
         <Dialog
@@ -46,8 +44,8 @@ export default function FilterDialog(props) {
                     <Select
                         labelId="type"
                         id="type-select"
-                        value={values.type}
-                        onChange={(e) => setValues({ ...values, type: e.target.value })}
+                        value={filter.type}
+                        onChange={(e) => setFilter({ ...filter, type: e.target.value })}
                     >
                         <MenuItem value="momentum">Momentum</MenuItem>
                     </Select>
@@ -58,8 +56,8 @@ export default function FilterDialog(props) {
                     <Select
                         labelId="universe"
                         id="universe-select"
-                        value={values.universe}
-                        onChange={(e) => setValues({ ...values, universe: e.target.value })}
+                        value={filter.universe}
+                        onChange={(e) => setFilter({ ...filter, universe: e.target.value })}
                     >
                         <MenuItem value="IBOV">Ibovespa</MenuItem>
                         <MenuItem value="IBRA">Ibra</MenuItem>
@@ -71,8 +69,8 @@ export default function FilterDialog(props) {
                     <Select
                         labelId="look_back"
                         id="look_back-select"
-                        value={values.look_back}
-                        onChange={(e) => setValues({ ...values, look_back: e.target.value })}
+                        value={filter.look_back}
+                        onChange={(e) => setFilter({ ...filter, look_back: e.target.value })}
                     >
                         <MenuItem value={6}>6 meses</MenuItem>
                         <MenuItem value={12}>12 meses</MenuItem>
@@ -84,8 +82,8 @@ export default function FilterDialog(props) {
                     <Select
                         labelId="port_size"
                         id="port_size-select"
-                        value={values.port_size}
-                        onChange={(e) => setValues({ ...values, port_size: e.target.value })}
+                        value={filter.port_size}
+                        onChange={(e) => setFilter({ ...filter, port_size: e.target.value })}
                     >
                         <MenuItem value={10}>10</MenuItem>
                         <MenuItem value={15}>15</MenuItem>
@@ -100,7 +98,7 @@ export default function FilterDialog(props) {
                     <Button
                         variant="contained"
                         color="primary"
-                        onClick={() => handleSubmit(values)}
+                        onClick={submit}
                     >
                         Enviar
                     </Button>
