@@ -58,7 +58,7 @@ export default function LoginForm(){
             label="Entrar"
             variant="contained"
             color="primary"
-            loading={true}
+            loading='true'
             endIcon={loading && <CircularProgress color="white" size={24} />}
             onClick={handleSubmit}
             >

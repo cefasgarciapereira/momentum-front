@@ -33,22 +33,28 @@ const SessionProvider = ({ children }) => {
     }
 
     const fetchApi = async (endpoint, bodyParams = {}, method = "GET") => {
-        if (method === "GET") {
-            const response = await axios.get(`${BASE_URL}/${endpoint}`, {
-                headers: { Authorization: `Bearer ${user.token}` },
-                params: { ...bodyParams }
-            })
-            return response;
+        if(user){
+            if (method === "GET") {
+                const response = await axios.get(`${BASE_URL}/${endpoint}`, {
+                    headers: { Authorization: `Bearer ${user.token}` },
+                    params: { ...bodyParams }
+                })
+                return response;
+            }
+    
+            if (method === "POST") {
+    
+                const config = {
+                    headers: { Authorization: `Bearer ${user.token}` },
+                }
+    
+                const response = await axios.post(`${BASE_URL}/${endpoint}`, bodyParams, config)
+                return response;
+            }
         }
 
-        if (method === "POST") {
-
-            const config = {
-                headers: { Authorization: `Bearer ${user.token}` },
-            }
-
-            const response = await axios.post(`${BASE_URL}/${endpoint}`, bodyParams, config)
-            return response;
+        if (!user) {
+            throw new Error('A user must be logged to call this action.');
         }
     }
 
@@ -71,25 +77,36 @@ const SessionProvider = ({ children }) => {
     }, [])
 
     useEffect(() => {
-
         const isAuthenticated = () => {
             if (user) {
-                fetchApi('user/isAuthenticated', { user: user }, "POST")
-                    .catch(err => {
-                        if (err && err.response && (err.response.status === 403)) {
-                            logout()
-                        }
-
-                        fetchApi('user/refreshToken', { user: user }, "POST")
-                            .then(res => {
-                                console.log(res.data)
-                                setUser({ ...user, token: res.data.token, refreshToken: res.data.refreshToken })
-                            })
-                            .catch(err => {
-                                setUser(null);
-                                localStorage.clear();
-                            })
+                
+                const config = {
+                    headers: { Authorization: `Bearer ${user.token}` },
+                }
+                
+                //check if user has a valid token
+                axios.post(`${BASE_URL}/user/isAuthenticated`, {user: user}, config)
+                .then(() => console.log('User is logged.'))
+                .catch(err => {
+                    
+                    if (err && err.response && (err.response.status === 403)) {
+                        console.log('User is not authenticated.')
+                        logout()
+                    }
+                    
+                    //get a new valid token
+                    axios.post(`${BASE_URL}/user/refreshToken`, {user: user}, config)
+                    .then(res => {
+                        console.log(res.data)
+                        setUser({ ...user, token: res.data.token, refreshToken: res.data.refreshToken })
                     })
+                    .catch(err => {
+                        console.log('Error when refreshing token')
+                        console.log(err)
+                        setUser(null);
+                        localStorage.clear();
+                    })
+                })
             }
         }
 
@@ -98,7 +115,6 @@ const SessionProvider = ({ children }) => {
                 try {
                     localStorage.setItem('@momentum:user', JSON.stringify(user));
                 } catch (err) {
-                    alert(err)
                     console.log(err)
                 }
             }

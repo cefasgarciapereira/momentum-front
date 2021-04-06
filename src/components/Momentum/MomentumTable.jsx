@@ -45,7 +45,7 @@ export default function MomentumTable() {
                                     {row.stock}
                                 </TableCell>
                                 <TableCell align="left">{parseFloat(row.signal).toFixed(2)}</TableCell>
-                                <TableCell align="left">{parseFloat(row['Risk Parity'] * 100).toFixed(2)}%</TableCell>
+                                <TableCell align="left">{parseFloat(row.risk_parity * 100).toFixed(2)}%</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>

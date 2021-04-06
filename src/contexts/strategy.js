@@ -1,8 +1,8 @@
-import { 
-    createContext, 
-    useState, 
-    useEffect, 
-    useContext 
+import {
+    createContext,
+    useState,
+    useEffect,
+    useContext
 } from 'react';
 import { useSession } from 'contexts/session';
 import { useSnackbar } from 'notistack';
@@ -16,7 +16,7 @@ const initialFilter = {
     port_size: 15
 }
 
-const StrategyProvider = ({children}) => {
+const StrategyProvider = ({ children }) => {
     const { fetchApi, user } = useSession();
     const { enqueueSnackbar } = useSnackbar();
     const [momentum, setMomentum] = useState();
@@ -24,59 +24,60 @@ const StrategyProvider = ({children}) => {
     const [backtest, setBacktest] = useState();
     const [loading, setLoading] = useState(false);
 
-    useEffect(() => {
-        applyFilter()
-    }, [user])
-
     const filterMomentum = () => {
         setLoading(true);
         fetchApi('strategy/search', filter)
-        .then(response => {
-            if(!response.data.strategy){
-                enqueueSnackbar('Essa estratégia não foi encontrada 😔', {variant: "info"})
-            }else{
-                setMomentum(response.data.strategy)
-            }
-            setLoading(false);
-        })
-        .catch(err => {
-            console.log(err)
-            setLoading(false);
-        })
+            .then(response => {
+                if (!response.data.strategy) {
+                    enqueueSnackbar('Essa estratégia não foi encontrada 😔', { variant: "info" })
+                } else {
+                    setMomentum(response.data.strategy)
+                }
+                setLoading(false);
+            })
+            .catch(err => {
+                console.log(err)
+                setLoading(false);
+            })
     }
 
     const filterBacktest = () => {
         setLoading(true);
         fetchApi('backtest/search', filter)
-        .then(response => {
-            if(!response.data.backtest){
-                enqueueSnackbar('Esse backtest não foi encontrada 😔', {variant: "info"})
-            }else{
-                setBacktest(response.data.backtest)
-            }
-            setLoading(false);
-        })
-        .catch(err => {
-            console.log(err)
-            setLoading(false);
-        })
+            .then(response => {
+                if (!response.data.backtest) {
+                    enqueueSnackbar('Esse backtest não foi encontrada 😔', { variant: "info" })
+                } else {
+                    setBacktest(response.data.backtest)
+                }
+                setLoading(false);
+            })
+            .catch(err => {
+                console.log(err)
+                setLoading(false);
+            })
     }
-    
+
     const applyFilter = () => {
         filterMomentum();
         filterBacktest();
     }
 
-    return(
+    useEffect(() => {
+        applyFilter()
+        // eslint-disable-next-line
+    }, [user])
+
+    return (
         <StrategyContext.Provider
-        value={{
-            momentum,
-            backtest,
-            loading,
-            filter,
-            setFilter,
-            applyFilter
-        }}>
+            value={{
+                momentum,
+                backtest,
+                loading,
+                filter,
+                setFilter,
+                applyFilter
+            }}>
             {children}
         </StrategyContext.Provider>
     );
@@ -85,11 +86,11 @@ const StrategyProvider = ({children}) => {
 const useStrategy = () => {
     const context = useContext(StrategyContext);
 
-    if(!context){
+    if (!context) {
         throw new Error('useStrategy must be used within an StrategyProvider.');
     }
 
     return context;
 }
 
-export {StrategyProvider, useStrategy};
+export { StrategyProvider, useStrategy };

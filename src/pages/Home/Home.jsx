@@ -16,6 +16,7 @@ export default function Home() {
   const [filter, setFilter] = useState(false);
   const classes = useHomeStyles();
 
+
   if (loading) return <LoadingScreen />
 
   return (
