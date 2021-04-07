@@ -1,9 +1,12 @@
+import { useState } from 'react';
 import { Box, Typography, Paper } from '@material-ui/core';
 import LoginForm from './LoginForm';
+import SignUpForm from './SignUpForm';
 import { useLoginStyles } from './styles';
 
 export default function Login() {
     const classes = useLoginStyles();
+    const [screen, setScreen] = useState('login')
 
     return (
         <div className={classes.container}>
@@ -13,7 +16,13 @@ export default function Login() {
                 <Box style={{ width: '100%' }}>
                     <Typography variant="h2">Easy Quant</Typography>
                 </Box>
-                <LoginForm />
+                {screen === 'login' &&
+                    <LoginForm navigateTo={setScreen} />
+                }
+
+                {screen === 'signup' &&
+                    <SignUpForm navigateTo={setScreen} />
+                }
                 <Box style={{ width: '100%' }} display="flex" alignItems="center" justifyContent="space-between">
                     <Typography variant="caption">Copyright © Momentum 2021.</Typography>
                     {/* <Typography variant="caption">Problemas com seu login?</Typography> */}

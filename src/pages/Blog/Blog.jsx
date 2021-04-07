@@ -4,6 +4,7 @@ import {
     TextField
 } from '@material-ui/core'
 import PostCard from './PostCard'
+import { WelcomeMessage } from 'components';
 import { getPosts, searchPost } from 'utils/blog'
 import { useBlogStyles } from './styles';
 
@@ -35,6 +36,7 @@ export default function Blog() {
 
     return (
         <Box>
+            <WelcomeMessage/>
             <TextField
                 fullWidth
                 id="outlined-basic"

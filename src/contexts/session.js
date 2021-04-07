@@ -15,9 +15,30 @@ const SessionProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [error, setError] = useState(false);
 
+    const register = async (newUser) => {
+        if(newUser.password === newUser.password_confirmation){
+            await axios.post(`${BASE_URL}/user/register`, { ...newUser })
+            .then(response => {
+                const decoded = jwt_decode(response.data.token);
+                setUser({ ...decoded.user, token: response.data.token, refreshToken: response.data.refreshToken });
+                setError(false);
+            })
+            .catch(err => {
+                console.log(err);
+                try {
+                    setError(err.response.data.error ? err.response.data.error : `${err.name}: ${err.message}`);
+                } catch (err) {
+                    setError(`${err}`);
+                }
+            })
+        }else{
+            setError('As senhas não coincidem.')
+        }
+    }
+
     const login = async (credentials) => {
         await axios.post(`${BASE_URL}/user/login`, { ...credentials })
-            .then(async response => {
+            .then(response => {
                 const decoded = jwt_decode(response.data.token);
                 setUser({ ...decoded.user, token: response.data.token, refreshToken: response.data.refreshToken });
                 setError(false);
@@ -58,10 +79,19 @@ const SessionProvider = ({ children }) => {
         }
     }
 
+    const closeWelcomeMessage = async () => {
+        await fetchApi('user/hideMessage', {user: user}, "POST")
+        setUser({...user, welcome_message: false})
+    }
+
     const logout = async () => {
         setUser(null);
         localStorage.clear();
         window.location = "/"
+    }
+
+    const cleanError = () => {
+        setError(null)
     }
 
     useEffect(() => {
@@ -128,6 +158,9 @@ const SessionProvider = ({ children }) => {
             value={{
                 user,
                 error,
+                closeWelcomeMessage,
+                cleanError,
+                register,
                 login,
                 logout,
                 fetchApi

@@ -5,7 +5,7 @@ import { ResponsiveDrawer, Error404, LoadingScreen } from 'components'
 
 function Routes() {
   const Login = lazy(() => import('pages/Login'));
-  const Home = lazy(() => import('pages/Home'));
+  const Momentum = lazy(() => import('pages/Momentum'));
   const Blog = lazy(() => import('pages/Blog'));
   const Post = lazy(() => import('pages/Blog/Post'));
 
@@ -20,9 +20,9 @@ function Routes() {
             <ResponsiveDrawer {...props}>
               <Suspense fallback={<LoadingScreen/>}>
                 <Switch>
-                  <Redirect exact from='/' to='/home' />
-                  <Route exact path='/home' component={Home} />
+                  <Redirect exact from='/' to='/blog' />
                   <Route exact path='/blog' component={Blog} />
+                  <Route exact path='/momentum' component={Momentum} />
                   <Route exact path='/post/:id' component={Post}/>
                   <Redirect to='/404'/>
                 </Switch>

@@ -14,7 +14,7 @@ import {
   Typography,
   Toolbar
 } from '@material-ui/core';
-import { Link } from 'react-router-dom'; 
+import { Link } from 'react-router-dom';
 import TimelineOutlinedIcon from '@material-ui/icons/TimelineOutlined';
 import MenuIcon from '@material-ui/icons/Menu';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
@@ -40,26 +40,26 @@ function ResponsiveDrawer(props) {
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        <ListItem style={{gap: '1rem'}}>
+        <ListItem style={{ gap: '1rem' }}>
           <Avatar>{generateAvatar(user.name)}</Avatar>
           <Typography>{user.name}</Typography>
         </ListItem>
       </List>
       <Divider />
       <List>
-        <ListItem component={Link}  to='/home' style={{gap: '1rem', textDecoration: 'none'}}>
-          <ListItemIcon><TimelineOutlinedIcon/></ListItemIcon>
-            <Typography>Momentum</Typography>
+        <ListItem component={Link} to='/blog' style={{ gap: '1rem', textDecoration: 'none' }}>
+          <ListItemIcon><DescriptionIcon /></ListItemIcon>
+          <Typography>Blog</Typography>
         </ListItem>
-        <ListItem component={Link}  to='/blog' style={{gap: '1rem', textDecoration: 'none'}}>
-          <ListItemIcon><DescriptionIcon/></ListItemIcon>
-            <Typography>Blog</Typography>
+        <ListItem component={Link} to='/momentum' style={{ gap: '1rem', textDecoration: 'none' }}>
+          <ListItemIcon><TimelineOutlinedIcon /></ListItemIcon>
+          <Typography>Momentum</Typography>
         </ListItem>
       </List>
       <Divider />
       <List>
-        <ListItem button style={{gap: '1rem'}} onClick={logout} active>
-          <ListItemIcon><ExitToAppIcon/></ListItemIcon>
+        <ListItem button style={{ gap: '1rem' }} onClick={logout} active>
+          <ListItemIcon><ExitToAppIcon /></ListItemIcon>
           <Typography>Sair</Typography>
         </ListItem>
       </List>

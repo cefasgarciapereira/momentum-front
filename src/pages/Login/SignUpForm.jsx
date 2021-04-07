@@ -10,13 +10,16 @@ import { useSession } from 'contexts/session';
 import { useHistory } from 'react-router-dom';
 
 const initialState = {
+    name: '',
     email: '',
+    instagram_at: '',
     password: '',
+    password_confirmation: '',
 }
 
-export default function LoginForm(props){
+export default function SignUpForm(props){
     const { navigateTo } = props;
-    const { login, error, user, cleanError } = useSession();
+    const { register, error, user, cleanError } = useSession();
     const [values, setValues] = useState(initialState);
     const [loading, setLoading] = useState(false);
     const history = useHistory();
@@ -25,7 +28,7 @@ export default function LoginForm(props){
 
     const handleNavigation = () => {
         cleanError()
-        navigateTo('signup')
+        navigateTo('login')
     }
 
     const handleChange = (prop) => (event) => {
@@ -34,7 +37,7 @@ export default function LoginForm(props){
 
     const handleSubmit = async () =>{
         setLoading(true);
-        await login(values)
+        await register(values)
         setLoading(false);
     }
 
@@ -42,9 +45,27 @@ export default function LoginForm(props){
         <Box width={'100%'} style={{display: 'flex', flexDirection: 'column', gap: '1rem', margin: '2rem 0'}}>
             <TextField
             fullWidth
+            value={values.name}
+            onChange={handleChange('name')}
+            label="Nome Completo"
+            variant="outlined"
+            required
+            />
+
+            <TextField
+            fullWidth
             value={values.email}
             onChange={handleChange('email')}
             label="E-mail"
+            variant="outlined"
+            required
+            />
+
+            <TextField
+            fullWidth
+            value={values.instagram_at}
+            onChange={handleChange('instagram_at')}
+            label="@instagram"
             variant="outlined"
             required
             />
@@ -59,16 +80,26 @@ export default function LoginForm(props){
             required
             />
 
+            <TextField
+            fullWidth
+            value={values.password_confirmation}
+            onChange={handleChange('password_confirmation')}
+            label="Confirme sua senha"
+            variant="outlined"
+            type="password"
+            required
+            />
+
             <Button
             fullWidth
-            label="Entrar"
+            label="Cadastrar"
             variant="contained"
             color="primary"
             loading='true'
             endIcon={loading && <CircularProgress color="white" size={24} />}
             onClick={handleSubmit}
             >
-                Entrar
+                Cadastrar
             </Button>
             
             <Button
@@ -78,7 +109,7 @@ export default function LoginForm(props){
             color="primary"
             onClick={handleNavigation}
             >
-                Cadastrar
+                Cancelar
             </Button>
             <FormHelperText error>{error}</FormHelperText>
         </Box>

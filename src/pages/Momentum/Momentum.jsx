@@ -3,19 +3,18 @@ import {
   MomentumTable,
   BacktestChart,
   FilterDialog,
-  LoadingScreen
+  LoadingScreen,
+  Stats
 } from 'components';
 import { Box, Fab } from '@material-ui/core';
 import { useStrategy } from 'contexts/strategy';
 import FilterListIcon from '@material-ui/icons/FilterList';
-import { useHomeStyles } from './styles';
+import { useMomentumStyles } from './styles';
 
-
-export default function Home() {
+export default function Momentum() {
   const { loading } = useStrategy();
   const [filter, setFilter] = useState(false);
-  const classes = useHomeStyles();
-
+  const classes = useMomentumStyles();
 
   if (loading) return <LoadingScreen />
 
@@ -36,6 +35,7 @@ export default function Home() {
         visible={filter}
         handleClose={() => setFilter(false)}
       />
+      <Stats />
     </Box>
   )
 }

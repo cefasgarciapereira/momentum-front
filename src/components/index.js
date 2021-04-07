@@ -6,3 +6,5 @@ export { default as MomentumTable } from './Momentum/MomentumTable';
 export { default as PrismicText } from './PrismicText';
 export { default as BacktestChart } from './BacktestChart/BacktestChart';
 export { default as FilterDialog } from './FilterDialog';
+export { default as WelcomeMessage } from './WelcomeMessage';
+export { Stats } from './BacktestChart';
