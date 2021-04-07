@@ -35,6 +35,12 @@ export default function SignUpForm(props){
         setValues({ ...values, [prop]: event.target.value });
     };
 
+    const handleInstagramAt = (e) => {
+        if(e.target.value && e.target.value[0] !== '@'){
+            setValues({...values, instagram_at: `@${e.target.value}`})
+        }
+    }
+
     const handleSubmit = async () =>{
         setLoading(true);
         await register(values)
@@ -65,6 +71,7 @@ export default function SignUpForm(props){
             fullWidth
             value={values.instagram_at}
             onChange={handleChange('instagram_at')}
+            onBlur={handleInstagramAt}
             label="@instagram"
             variant="outlined"
             required
