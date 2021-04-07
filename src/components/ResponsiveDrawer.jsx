@@ -53,7 +53,7 @@ function ResponsiveDrawer(props) {
         </ListItem>
         <ListItem component={Link} to='/momentum' style={{ gap: '1rem', textDecoration: 'none' }}>
           <ListItemIcon><TimelineOutlinedIcon /></ListItemIcon>
-          <Typography>Momentum</Typography>
+          <Typography>Estratégias</Typography>
         </ListItem>
       </List>
       <Divider />

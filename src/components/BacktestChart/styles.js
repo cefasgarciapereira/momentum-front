@@ -10,7 +10,6 @@ export const useStatsStyles = makeStyles({
       }
     },
     container: {
-      maxHeight: 440,
       
       "@media (min-width: 600px)":{
         width: '100%',
