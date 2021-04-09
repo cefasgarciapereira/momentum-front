@@ -4,7 +4,7 @@ import {
     TextField
 } from '@material-ui/core'
 import PostCard from './PostCard'
-import { WelcomeMessage } from 'components';
+import { WelcomeMessage, Page } from 'components';
 import { getPosts, searchPost } from 'utils/blog'
 import { useBlogStyles } from './styles';
 
@@ -35,19 +35,22 @@ export default function Blog() {
 
 
     return (
-        <Box>
-            <WelcomeMessage/>
-            <TextField
-                fullWidth
-                id="outlined-basic"
-                label="Buscar"
-                variant="outlined"
-                onChange={(e) => handleSearch(e.target.value)}
-                placeholder="Buscar" />
-            {(!posts.length > 0) && <h3>Nenhum post encontrado.</h3>}
-            <Box className={classes.postsContainer}>
-                {posts.map(post => (< PostCard key={post.id} id={post.id} data={post.data} />))}
+        <Page title="Blog">
+            <Box>
+                <WelcomeMessage />
+                <TextField
+                    fullWidth
+                    id="outlined-basic"
+                    label="Buscar"
+                    variant="outlined"
+                    onChange={(e) => handleSearch(e.target.value)}
+                    placeholder="Buscar" />
+                {(!posts.length > 0) && <h3>Nenhum post encontrado.</h3>}
+                <Box className={classes.postsContainer}>
+                    {posts.map(post => (< PostCard key={post.id} id={post.id} data={post.data} />))}
+                </Box>
             </Box>
-        </Box>
+        </Page>
+
     )
 }

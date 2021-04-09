@@ -6,10 +6,11 @@ import { usePageStyles } from './styles';
 
 const Page = forwardRef(({ title, children, className, ...rest }, ref) => {
   const classes = usePageStyles();
+  
   return (
     <div ref={ref} {...rest} className={className ? className : classes.root}>
       <Helmet>
-        <title>{title}</title>
+        <title>Easy Quant {title ? `| ${title}` : ''}</title>
       </Helmet>
       {children}
     </div>
