@@ -11,7 +11,6 @@ const Page = forwardRef(({ title, children, className, ...rest }, ref) => {
     <div ref={ref} {...rest} className={className ? className : classes.root}>
       <Helmet>
         <title>Easy Quant {title ? `| ${title}` : ''}</title>
-        <link rel="canonical" href="https://www.easyquant.com.br"></link>
       </Helmet>
       {children}
     </div>
