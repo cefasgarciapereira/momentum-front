@@ -12,8 +12,7 @@ const SessionContext = createContext();
 const BASE_URL = process.env.REACT_APP_ENV === 'prod' ? "https://easyquant-api.herokuapp.com/" :
     process.env.REACT_APP_ENV === 'homolog' ? "https://homolog-momentum-api.herokuapp.com" : 'http://localhost:9000'
 
-console.log(process.env.REACT_APP_ENV)
-console.log(BASE_URL)
+console.log("Enviorment: ", process.env.REACT_APP_ENV)
 
 const SessionProvider = ({ children }) => {
     const [user, setUser] = useState(null);
