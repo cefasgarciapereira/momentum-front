@@ -9,7 +9,7 @@ import axios from 'axios';
 const SessionContext = createContext();
 
 //const BASE_URL = 'https://homolog-momentum-api.herokuapp.com'
-const BASE_URL = process.env.REACT_APP_ENV === 'prod' ? "https://easyquant-api.herokuapp.com/" :
+const BASE_URL = process.env.REACT_APP_ENV === 'prod' ? "https://easyquant-api.herokuapp.com" :
     process.env.REACT_APP_ENV === 'homolog' ? "https://homolog-momentum-api.herokuapp.com" : 'http://localhost:9000'
 
 console.log("Enviorment: ", process.env.REACT_APP_ENV)
