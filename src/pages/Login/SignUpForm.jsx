@@ -48,7 +48,7 @@ export default function SignUpForm(props){
     }
 
     return(
-        <Box width={'100%'} style={{display: 'flex', flexDirection: 'column', gap: '1rem', margin: '2rem 0'}}>
+        <Box width={'100%'} style={{display: 'flex', flexDirection: 'column', gap: '1rem', margin: '2rem 0', overflow: 'auto'}}>
             <TextField
             fullWidth
             value={values.name}

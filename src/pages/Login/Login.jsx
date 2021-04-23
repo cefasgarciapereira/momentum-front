@@ -13,7 +13,7 @@ export default function Login() {
         <div className={classes.container}>
             <Box className={classes.image}>
             </Box>
-            <Paper className={classes.form} elevation={3}>
+            <Paper className={classes.form} elevation={3} style={{overflow: 'auto'}}>
                 <Page title="Entrar" style={{width: '100%'}}>
                     <Box style={{ width: '100%' }}>
                         <Typography variant="h2">Easy Quant</Typography>
