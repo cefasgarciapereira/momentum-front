@@ -4,6 +4,7 @@ import { Box, Typography, Paper } from '@material-ui/core';
 import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
 import { useLoginStyles } from './styles';
+import easyquant from 'assets/easyquant-colored.svg';
 
 export default function Login() {
     const classes = useLoginStyles();
@@ -13,10 +14,10 @@ export default function Login() {
         <div className={classes.container}>
             <Box className={classes.image}>
             </Box>
-            <Paper className={classes.form} elevation={3} style={{overflow: 'auto'}}>
-                <Page title="Entrar" style={{width: '100%'}}>
+            <Paper className={classes.form} elevation={3} style={{ overflow: 'auto' }}>
+                <Page title="Entrar" style={{ width: '100%' }}>
                     <Box style={{ width: '100%' }}>
-                        <Typography variant="h2">Easy Quant</Typography>
+                        <img src={easyquant} style={{ width: '30%', objectFit: 'contain' }} alt="easyquant logotipo" />
                     </Box>
                     {screen === 'login' &&
                         <LoginForm navigateTo={setScreen} />
