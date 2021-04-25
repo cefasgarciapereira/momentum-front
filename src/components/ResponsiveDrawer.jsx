@@ -23,6 +23,7 @@ import { generateAvatar } from 'utils/helper';
 import { useSession } from 'contexts/session';
 import { useTheme } from '@material-ui/core/styles';
 import { useDrawerStyles } from './styles';
+import easyquant from 'assets/easyquant.svg';
 
 function ResponsiveDrawer(props) {
   const { window, children } = props;
@@ -82,8 +83,10 @@ function ResponsiveDrawer(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
-            Easy Quant
+          <Typography variant="h6" noWrap style={{fontFamily: 'Vudotronic'}}>
+            <div style={{width: 120, height: 32}}>
+              <img src={easyquant} style={{width: '100%', objectFit: 'contain'}} alt="easyquant logotipo"/>
+            </div>
           </Typography>
         </Toolbar>
       </AppBar>

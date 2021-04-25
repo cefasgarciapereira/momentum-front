@@ -1,28 +1,42 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Routes from './routes';
 import { Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
-import Routes from './routes';
 import { SessionProvider } from 'contexts/session';
 import { StrategyProvider } from 'contexts/strategy';
 import { SnackbarProvider } from 'notistack';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import './index.css';
 
 const history = createBrowserHistory();
 
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#011657",
+    },
+    secondary: {
+      main: "#1bde44",
+    },
+  },
+});
+
 ReactDOM.render(
   <React.StrictMode>
-    <SnackbarProvider
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      autoHideDuration={3000}>
-      <SessionProvider>
-        <StrategyProvider>
-          <Router history={history}>
-            <Routes />
-          </Router>
-        </StrategyProvider>
-      </SessionProvider>
-    </SnackbarProvider>
+    <ThemeProvider theme={theme}>
+      <SnackbarProvider
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        autoHideDuration={3000}>
+        <SessionProvider>
+          <StrategyProvider>
+            <Router history={history}>
+              <Routes />
+            </Router>
+          </StrategyProvider>
+        </SessionProvider>
+      </SnackbarProvider>
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
