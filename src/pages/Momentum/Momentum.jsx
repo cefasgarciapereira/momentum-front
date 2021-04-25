@@ -7,7 +7,7 @@ import {
   Stats,
   Page
 } from 'components';
-import { Box, Fab } from '@material-ui/core';
+import { Box, Button } from '@material-ui/core';
 import { useStrategy } from 'contexts/strategy';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import { useMomentumStyles } from './styles';
@@ -22,15 +22,13 @@ export default function Momentum() {
   return (
     <Page title="Estratégias">
       <Box className={classes.container}>
-        <Fab
-          onClick={() => setFilter(true)}
+        <Button
+          variant="contained"
           color="primary"
-          size="large"
-          aria-label="add"
-          className={classes.fab}
-        >
-          <FilterListIcon />
-        </Fab>
+          startIcon={<FilterListIcon />}
+          onClick={() => setFilter(true)}>
+          Filtrar
+        </Button>
         <MomentumTable />
         <BacktestChart />
         <FilterDialog
