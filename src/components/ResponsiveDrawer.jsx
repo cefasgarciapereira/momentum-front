@@ -14,7 +14,7 @@ import {
   Typography,
   Toolbar
 } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 import TimelineOutlinedIcon from '@material-ui/icons/TimelineOutlined';
 import MenuIcon from '@material-ui/icons/Menu';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
@@ -48,11 +48,11 @@ function ResponsiveDrawer(props) {
       </List>
       <Divider />
       <List>
-        <ListItem component={Link} to='/blog' style={{ gap: '1rem', textDecoration: 'none' }}>
+        <ListItem component={RouterLink} to='/blog' color="primary" button>
           <ListItemIcon><DescriptionIcon /></ListItemIcon>
           <Typography>Blog</Typography>
         </ListItem>
-        <ListItem component={Link} to='/momentum' style={{ gap: '1rem', textDecoration: 'none' }}>
+        <ListItem component={RouterLink} to='/momentum' color="primary" button>
           <ListItemIcon><TimelineOutlinedIcon /></ListItemIcon>
           <Typography>Estratégias</Typography>
         </ListItem>
