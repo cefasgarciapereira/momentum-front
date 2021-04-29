@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Page } from 'components';
 import { Box, Typography, Paper } from '@material-ui/core';
+import { Link as RouterLink } from 'react-router-dom';
 import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
 import { useLoginStyles } from './styles';
@@ -28,7 +29,7 @@ export default function Login() {
                     }
                     <Box style={{ width: '100%' }} display="flex" alignItems="center" justifyContent="space-between">
                         <Typography variant="caption">Copyright © Momentum 2021.</Typography>
-                        {/* <Typography variant="caption">Problemas com seu login?</Typography> */}
+                        <Typography variant="caption" component={RouterLink} to="/recuperarsenha">Esqueceu sua senha?</Typography>
                     </Box>
                 </Page>
             </Paper>
