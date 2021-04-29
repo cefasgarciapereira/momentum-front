@@ -29,7 +29,7 @@ export default function Login() {
                     }
                     <Box style={{ width: '100%' }} display="flex" alignItems="center" justifyContent="space-between">
                         <Typography variant="caption">Copyright © Momentum 2021.</Typography>
-                        <Typography variant="caption" component={RouterLink} to="/recuperarsenha">Esqueceu sua senha?</Typography>
+                        <Typography variant="caption" component={RouterLink} to="/esqueci-minha-senha">Esqueceu sua senha?</Typography>
                     </Box>
                 </Page>
             </Paper>

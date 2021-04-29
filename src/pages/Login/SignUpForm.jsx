@@ -48,7 +48,7 @@ export default function SignUpForm(props) {
     }
 
     return (
-        <form onSubmit={handleSubmit}style={{ display: 'flex', flexDirection: 'column', gap: '1rem', padding: '2rem 0', overflow: 'auto' }}>
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem', padding: '2rem 0', overflow: 'auto' }}>
             <TextField
                 fullWidth
                 value={values.name}

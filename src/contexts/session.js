@@ -156,6 +156,12 @@ const SessionProvider = ({ children }) => {
         isAuthenticated();
     }, [user])
 
+
+    const requestNewPassword = async (email) => {
+        const res = await axios.post(`${BASE_URL}/user/requestNewPassword`, { email })
+        return res;
+    }
+
     return (
         <SessionContext.Provider
             value={{
@@ -166,7 +172,8 @@ const SessionProvider = ({ children }) => {
                 register,
                 login,
                 logout,
-                fetchApi
+                fetchApi,
+                requestNewPassword
             }}>
             {children}
         </SessionContext.Provider>

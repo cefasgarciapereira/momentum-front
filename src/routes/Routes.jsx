@@ -8,12 +8,14 @@ function Routes() {
   const Momentum = lazy(() => import('pages/Momentum'));
   const Blog = lazy(() => import('pages/Blog'));
   const Post = lazy(() => import('pages/Blog/Post'));
+  const ForgotPassword = lazy(() => import('pages/ForgotPassword'))
 
   return (
     <Suspense fallback={<LoadingScreen />}>
       <Switch>
         <Route exact path='/404' component={Error404} />
         <GuestRoute exact path='/login' component={Login} />
+        <GuestRoute exact path='/esqueci-minha-senha' component={ForgotPassword}/>
         <AuthRoute
           path='/'
           render={(props) => (
