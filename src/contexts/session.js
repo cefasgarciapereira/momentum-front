@@ -8,7 +8,6 @@ import jwt_decode from "jwt-decode";
 import axios from 'axios';
 const SessionContext = createContext();
 
-//const BASE_URL = 'https://homolog-momentum-api.herokuapp.com'
 const BASE_URL = process.env.REACT_APP_ENV === 'prod' ? "https://easyquant-api.herokuapp.com" :
     process.env.REACT_APP_ENV === 'homolog' ? "https://homolog-momentum-api.herokuapp.com" : 'http://localhost:9000'
 
@@ -158,7 +157,16 @@ const SessionProvider = ({ children }) => {
 
 
     const requestNewPassword = async (email) => {
-        const res = await axios.post(`${BASE_URL}/user/requestNewPassword`, { email })
+        const res = await axios.post(`${BASE_URL}/user/requestNewPassword`, { email: email, env: process.env.REACT_APP_ENV })
+        return res;
+    }
+
+    const resetPassword = async (params) => {
+        const res = await axios.post(`${BASE_URL}/user/resetPassword`, { 
+            token: params.token,
+            email: params.email,
+            newPassword: params.newPassword
+         })
         return res;
     }
 
@@ -173,7 +181,8 @@ const SessionProvider = ({ children }) => {
                 login,
                 logout,
                 fetchApi,
-                requestNewPassword
+                requestNewPassword,
+                resetPassword
             }}>
             {children}
         </SessionContext.Provider>

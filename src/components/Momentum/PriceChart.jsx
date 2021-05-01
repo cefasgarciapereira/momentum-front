@@ -10,7 +10,7 @@ import {
 import CloseIcon from '@material-ui/icons/Close';
 import { Line } from '@reactchartjs/react-chart.js';
 import { useSession } from 'contexts/session';
-import useDeviceDetect from 'utils/useDeviceDetect';
+import { useDeviceDetect } from 'utils/hooks';
 
 export default function PriceChart(props) {
     const { visible, handleClose, price } = props;

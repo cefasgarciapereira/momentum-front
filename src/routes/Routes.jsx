@@ -9,6 +9,7 @@ function Routes() {
   const Blog = lazy(() => import('pages/Blog'));
   const Post = lazy(() => import('pages/Blog/Post'));
   const ForgotPassword = lazy(() => import('pages/ForgotPassword'))
+  const NewPassword = lazy(() => import('pages/ForgotPassword/NewPassword'))
 
   return (
     <Suspense fallback={<LoadingScreen />}>
@@ -16,6 +17,7 @@ function Routes() {
         <Route exact path='/404' component={Error404} />
         <GuestRoute exact path='/login' component={Login} />
         <GuestRoute exact path='/esqueci-minha-senha' component={ForgotPassword}/>
+        <GuestRoute exact path='/nova-senha' component={NewPassword}/>
         <AuthRoute
           path='/'
           render={(props) => (
