@@ -8,6 +8,21 @@ export const useMainStyles = makeStyles((theme) => ({
     }
 }));
 
+export const useHeaderStyles = makeStyles((theme) => ({
+    root: {
+        top: 0,
+        left: 0,
+        right: 0,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        padding: '1rem',
+    },
+    logo: {
+        width: '12rem'
+    }
+}));
+
 export const useHeroStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
@@ -277,7 +292,7 @@ export const useFooterStyles = makeStyles((theme) => ({
         alignItems: 'center',
         justifyContent: 'space-between',
         maxWidth: '400px',
-        
+
         [theme.breakpoints.up('md')]: {
             alignSelf: 'center'
         }

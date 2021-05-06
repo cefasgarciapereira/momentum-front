@@ -47,10 +47,13 @@ const SessionProvider = ({ children }) => {
             })
             .catch(err => {
                 console.log(err);
-                try {
-                    setError(err.response.data.error ? err.response.data.error : `${err.name}: ${err.message}`);
-                } catch (err) {
-                    setError(`${err}`);
+                if(err.response.data.error.message){
+                    setError(err.response.data.error.message);
+                }
+                else if (err.response.data.error) {
+                    setError(err.response.data.error);
+                } else {
+                    setError(`Um erro inesperado ocorreu durante o login: ${error}`)
                 }
             })
     }
@@ -162,11 +165,11 @@ const SessionProvider = ({ children }) => {
     }
 
     const resetPassword = async (params) => {
-        const res = await axios.post(`${BASE_URL}/user/resetPassword`, { 
+        const res = await axios.post(`${BASE_URL}/user/resetPassword`, {
             token: params.token,
             email: params.email,
             newPassword: params.newPassword
-         })
+        })
         return res;
     }
 

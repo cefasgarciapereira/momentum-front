@@ -6,7 +6,7 @@ function AuthRoute({ component: Component, render, ...rest }) {
   const {user} = useSession();
 
   if (!user) {
-    return <Redirect to='/login' />;
+    return <Redirect to='/home' />;
   }
 
   return render ? render({ ...rest }) : <Component {...rest} />;

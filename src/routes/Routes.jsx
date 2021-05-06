@@ -3,7 +3,7 @@ import { Switch, Redirect, Route } from 'react-router-dom';
 import { AuthRoute, GuestRoute } from 'components/Auth';
 import { ResponsiveDrawer, Error404, LoadingScreen } from 'components'
 
-function Routes() {
+export default function Routes() {
   const Login = lazy(() => import('pages/Login'));
   const LandingPage = lazy(() => import('pages/LandingPage'));
   const Momentum = lazy(() => import('pages/Momentum'));
@@ -16,8 +16,8 @@ function Routes() {
     <Suspense fallback={<LoadingScreen />}>
       <Switch>
         <Route exact path='/404' component={Error404} />
-        <GuestRoute exact path='/login' component={Login} />
         <GuestRoute exact path='/home' component={LandingPage} />
+        <GuestRoute exact path='/login' component={Login} />
         <GuestRoute exact path='/esqueci-minha-senha' component={ForgotPassword}/>
         <GuestRoute exact path='/nova-senha' component={NewPassword}/>
         <AuthRoute
@@ -40,5 +40,3 @@ function Routes() {
     </Suspense>
   );
 }
-
-export default Routes;

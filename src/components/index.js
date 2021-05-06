@@ -8,3 +8,4 @@ export { default as BacktestChart } from './BacktestChart/BacktestChart';
 export { default as FilterDialog } from './FilterDialog';
 export { default as WelcomeMessage } from './WelcomeMessage';
 export { Stats } from './BacktestChart';
+export { default as Login } from './Login';
