@@ -12,7 +12,7 @@ export default function Main() {
     const classes = useMainStyles();
 
     return (
-        <Page className={classes.root}>
+        <Page title="Home" className={classes.root}>
             <Header />
             <Hero/>
             <Features/>

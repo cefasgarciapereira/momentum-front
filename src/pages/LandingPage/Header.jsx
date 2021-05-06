@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Box, IconButton, Menu, MenuItem, Button } from '@material-ui/core';
-import { Login } from 'components';
+import { Login, SignUp } from 'components';
 import MenuIcon from '@material-ui/icons/Menu';
 import textLogo from 'assets/black-text-logo.svg';
 import { useHeaderStyles } from './styles';
@@ -38,7 +38,7 @@ export default function Header() {
                     <MenuItem onClick={handleClose}>Depoimentos</MenuItem>
                     <MenuItem onClick={handleClose}>Planos</MenuItem>
                     <MenuItem><Login /></MenuItem>
-                    <MenuItem onClick={handleClose}>Cadastrar</MenuItem>
+                    <MenuItem onClick={handleClose}><SignUp/></MenuItem>
                 </Menu>
             </Box>
         )
@@ -52,7 +52,7 @@ export default function Header() {
                 <Button onClick={handleClose}>Por Que?</Button>
                 <Button onClick={handleClose}>Depoimentos</Button>
                 <Button onClick={handleClose}>Planos</Button>
-                <Button variant="outlined" color="primary" style={{margin: '0 1rem'}}>Cadastrar</Button>
+                <Button variant="outlined" color="primary" style={{margin: '0 1rem'}}><SignUp/></Button>
                 <Button variant="contained" color="primary"><Login /></Button>
             </Box>
         </Box>

@@ -52,7 +52,7 @@ export default function Login() {
 
     return (
         <div>
-            <b onClick={handleClickOpen}>Entrar</b>
+            <c onClick={handleClickOpen}>Entrar</c>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Entrar</DialogTitle>
                 <DialogContent>
