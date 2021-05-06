@@ -2,6 +2,7 @@ import { Box, Typography, IconButton } from '@material-ui/core';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import EmailIcon from '@material-ui/icons/Email';
+import Fade from 'react-reveal/Fade';
 import { useHeader } from 'utils/hooks';
 import { useHeroStyles } from './styles';
 
@@ -14,21 +15,25 @@ export default function Hero() {
     return (
         <Box className={classes.root} style={{ height: height }}>
             <Typography variant='h3' align="center" className={classes.title}>
-                A plataforma que levará seus investimentos a um novo nível
+                <Fade left>
+                    A plataforma que levará seus investimentos a um novo nível
+                </Fade>
             </Typography>
 
             <Box className={classes.socialMedia}>
-                <IconButton>
-                    <FacebookIcon />
-                </IconButton>
+                <Fade bottom cascade>
+                    <IconButton>
+                        <FacebookIcon />
+                    </IconButton>
 
-                <IconButton>
-                    <InstagramIcon />
-                </IconButton>
+                    <IconButton>
+                        <InstagramIcon />
+                    </IconButton>
 
-                <IconButton>
-                    <EmailIcon />
-                </IconButton>
+                    <IconButton>
+                        <EmailIcon />
+                    </IconButton>
+                </Fade>
             </Box>
         </Box>
     )

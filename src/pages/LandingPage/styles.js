@@ -39,8 +39,9 @@ export const useHeroStyles = makeStyles((theme) => ({
         }
     },
     socialMedia: {
+        display: 'flex',
+
         [theme.breakpoints.up('md')]: {
-            display: 'flex',
             flexDirection: 'column',
             gap: '1rem'
         }
@@ -69,16 +70,17 @@ export const useFeaturesStyles = makeStyles((theme) => ({
         alignItems: 'center',
         justifyContent: 'center',
         padding: '1rem',
-        maxWidth: '300px',
         width: '100%',
+        maxWidth: '250px',
 
         [theme.breakpoints.up('md')]: {
-            flexGrow: 1,
-            height: '400px'
+            height: '400px',
+            maxWidth: '300px',
         }
     },
     cover: {
-        width: '80%'
+        width: '80%',
+        maxWidth: '250px'
     }
 }))
 

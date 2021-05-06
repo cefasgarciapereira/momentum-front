@@ -1,5 +1,6 @@
 import { Box, Typography, Paper } from '@material-ui/core';
 import { useFeedbackStyles } from './styles';
+import Fade from 'react-reveal/Fade';
 
 export default function Feedback() {
     const classes = useFeedbackStyles();
@@ -23,38 +24,41 @@ export default function Feedback() {
     return (
         <Box className={classes.root}>
             <Typography variant="h4" align="center" className={classes.title}>
-                A impressão de quem já usa a Easy Quant
+                <Fade left>
+                    A impressão de quem já usa a Easy Quant
+                </Fade>
             </Typography>
-
-            <Box className={classes.cardsContainer}>
-                <Card
-                    name="Carlos da Silva"
-                    text="Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+            
+            <Fade bottom cascade>
+                <Box className={classes.cardsContainer}>
+                    <Card
+                        name="Carlos da Silva"
+                        text="Sed ut perspiciatis unde omnis iste natus error sit voluptatem
                  accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae 
                  ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
                   explicabo."
-                    picture={profilePic}
-                />
+                        picture={profilePic}
+                    />
 
-                <Card
-                    name="Carlos da Silva"
-                    text="Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+                    <Card
+                        name="Carlos da Silva"
+                        text="Sed ut perspiciatis unde omnis iste natus error sit voluptatem
                  accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae 
                  ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
                   explicabo."
-                    picture={profilePic}
-                />
+                        picture={profilePic}
+                    />
 
-                <Card
-                    name="Carlos da Silva"
-                    text="Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+                    <Card
+                        name="Carlos da Silva"
+                        text="Sed ut perspiciatis unde omnis iste natus error sit voluptatem
                  accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae 
                  ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
                   explicabo."
-                    picture={profilePic}
-                />
-            </Box>
-
+                        picture={profilePic}
+                    />
+                </Box>
+            </Fade>
         </Box>
     )
 }

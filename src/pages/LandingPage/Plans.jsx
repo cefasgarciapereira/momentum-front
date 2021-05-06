@@ -1,5 +1,6 @@
 import { Box, Paper, Typography, Button } from '@material-ui/core'
 import { usePlansStyles } from './styles'
+import Fade from 'react-reveal/Fade'
 
 export default function Plans() {
     const classes = usePlansStyles();
@@ -21,20 +22,24 @@ export default function Plans() {
                 seus investimentos
             </Typography>
 
-            <Box className={classes.cardsContainer}>
-                <Card
-                    title="Mensal"
-                    price="R$ 29,90"
-                />
-                <Card
-                    title="Trimestral"
-                    price="R$ 73,90"
-                />
-                <Card
-                    title="Anual"
-                    price="R$ 238,90"
-                />
-            </Box>
+            <Fade bottom cascade>
+                <Box className={classes.cardsContainer}>
+
+                    <Card
+                        title="Mensal"
+                        price="R$ 29,90"
+                    />
+                    <Card
+                        title="Trimestral"
+                        price="R$ 73,90"
+                    />
+                    <Card
+                        title="Anual"
+                        price="R$ 238,90"
+                    />
+                </Box>
+
+            </Fade>
         </Box>
     )
 }
