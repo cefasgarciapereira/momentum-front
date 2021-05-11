@@ -1,6 +1,7 @@
 import {
     TextField
 } from '@material-ui/core';
+import { MaskedInput } from 'components';
 
 export default function SignUpForm(props) {
     const {
@@ -29,6 +30,18 @@ export default function SignUpForm(props) {
                 name="email"
                 variant="outlined"
                 required
+            />
+
+            <MaskedInput
+                fullWidth
+                value={values.phone}
+                onChange={handleChange}
+                label="Telefone/Celular"
+                name="phone"
+                variant="outlined"
+                type="tel"
+                required
+                mask="(99) 9999-9999"
             />
 
             <TextField

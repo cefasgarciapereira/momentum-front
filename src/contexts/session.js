@@ -6,6 +6,7 @@ import {
 } from 'react';
 import jwt_decode from "jwt-decode";
 import axios from 'axios';
+import { parseError } from 'utils/helper';
 const SessionContext = createContext();
 
 const BASE_URL = process.env.REACT_APP_ENV === 'prod' ? "https://easyquant-api.herokuapp.com" :
@@ -26,7 +27,6 @@ const SessionProvider = ({ children }) => {
                     setError(false);
                 })
                 .catch(err => {
-                    console.log(err);
                     try {
                         setError(err.response.data.error ? err.response.data.error : `${err.name}: ${err.message}`);
                     } catch (err) {
@@ -35,6 +35,44 @@ const SessionProvider = ({ children }) => {
                 })
         } else {
             setError('As senhas não coincidem.')
+        }
+    }
+
+    const registerWithCloseFriends = async (newUser) => {
+        console.log(newUser)
+        if (newUser.password === newUser.password_confirmation) {
+            try{
+                const response = await axios.post(`${BASE_URL}/user/registerWithCloseFriends`, { ...newUser })
+                const decoded = jwt_decode(response.data.token);
+                setUser({ 
+                    ...decoded.user, 
+                    token: response.data.token, 
+                 });
+                return response
+            }catch(err){
+                throw new Error(parseError(err));
+            }
+        }else{
+            throw new Error("As senhas não coincidem");
+        }
+    }
+
+    const registerAndSubscribe = async (newUser) => {
+        console.log(newUser)
+        if (newUser.password === newUser.password_confirmation) {
+            try{
+                const response = await axios.post(`${BASE_URL}/user/registerAndSubscribe`, { ...newUser })
+                const decoded = jwt_decode(response.data.token);
+                setUser({ 
+                    ...decoded.user, 
+                    token: response.data.token, 
+                 });
+                return response
+            }catch(err){
+                throw new Error(parseError(err));
+            }
+        }else{
+            throw new Error("As senhas não coincidem");
         }
     }
 
@@ -181,6 +219,8 @@ const SessionProvider = ({ children }) => {
                 closeWelcomeMessage,
                 cleanError,
                 register,
+                registerWithCloseFriends,
+                registerAndSubscribe,
                 login,
                 logout,
                 fetchApi,

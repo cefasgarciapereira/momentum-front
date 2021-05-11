@@ -2,15 +2,22 @@ import {
     TextField,
     FormControl,
     Select,
-    InputLabel
+    InputLabel,
+    Box
 } from '@material-ui/core';
+import { MaskedInput } from 'components';
+import Cards from 'react-credit-cards';
+import { useDeviceDetect } from 'utils/hooks';
+import 'react-credit-cards/es/styles-compiled.css';
 
 export default function PersonalForm(props) {
+    const { isMobile } = useDeviceDetect();
     const {
         handleChange,
         values,
-        handleSubmit,
-        handleInstagramAt
+        handleInputFocus,
+        clearInputFocus,
+        handleSubmit
     } = props;
 
     return (
@@ -33,16 +40,72 @@ export default function PersonalForm(props) {
                 </Select>
             </FormControl>
 
+            <MaskedInput
+                fullWidth
+                value={values.card_number}
+                onChange={handleChange}
+                name="card_number"
+                label="Número"
+                variant="outlined"
+                type="text"
+                pattern="[0-9]*"
+                onFocus={handleInputFocus}
+                mask="9999 9999 9999 9999"
+            />
+
             <TextField
                 fullWidth
-                value={values.instagram_at}
+                value={values.card_name}
                 onChange={handleChange}
-                onBlur={handleInstagramAt}
-                name="instagram_at"
-                label="@instagram"
+                name="card_name"
+                label="Nome no cartão"
                 variant="outlined"
-                helperText="Opcional: Informe seu instagram caso você seja close friends do Leonardo Siqueira"
+                type="text"
+                onFocus={handleInputFocus}
             />
+
+            <Box style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem' }}>
+
+                <MaskedInput
+                    fullWidth
+                    value={values.card_expiry}
+                    onChange={handleChange}
+                    name="card_expiry"
+                    label="Vencimento"
+                    variant="outlined"
+                    type="text"
+                    onFocus={handleInputFocus}
+                    mask="99/9999"
+                />
+
+                <TextField
+                    fullWidth
+                    value={values.cvc}
+                    onChange={handleChange}
+                    name="cvc"
+                    label="CVC"
+                    variant="outlined"
+                    type="numeric"
+                    onFocus={handleInputFocus}
+                    onBlur={clearInputFocus}
+                />
+            </Box>
+            {
+                !isMobile &&
+                <Cards
+                    number={values.card_number}
+                    name={values.card_name}
+                    expiry={values.card_expiry}
+                    cvc={values.cvc}
+                    focused={values.focus}
+                    locale={{
+                        valid: 'vencimento',
+                    }}
+                    placeholders={{
+                        name: 'seu nome aqui',
+                    }}
+                />
+            }
         </form>
     )
 }
