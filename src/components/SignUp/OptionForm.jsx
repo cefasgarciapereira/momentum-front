@@ -7,11 +7,11 @@ import {
     Box,
     Card
 } from '@material-ui/core';
-import { useSignUpStyles } from './styles';
+import { useOptionForm } from './styles';
 
 export default function OptionForm(props) {
     const { handleFormOption, handleClose } = props;
-    const classes = useSignUpStyles();
+    const classes = useOptionForm();
 
     return (
         <Fragment>
@@ -22,13 +22,7 @@ export default function OptionForm(props) {
                     ou caso você seja close friends do Leonardo Siqueira, você já
                     está pré aprovado e, portanto,  não há necessidade de realizar assinatura .
                 </DialogContentText>
-                <Box style={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    width: '100%',
-                }}>
+                <Box className={classes.cardContainer}>
                     <Card
                         variant="outlined"
                         className={classes.card}

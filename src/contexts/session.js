@@ -18,26 +18,6 @@ const SessionProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [error, setError] = useState(false);
 
-    const register = async (newUser) => {
-        if (newUser.password === newUser.password_confirmation) {
-            await axios.post(`${BASE_URL}/user/register`, { ...newUser })
-                .then(response => {
-                    const decoded = jwt_decode(response.data.token);
-                    setUser({ ...decoded.user, token: response.data.token, refreshToken: response.data.refreshToken });
-                    setError(false);
-                })
-                .catch(err => {
-                    try {
-                        setError(err.response.data.error ? err.response.data.error : `${err.name}: ${err.message}`);
-                    } catch (err) {
-                        setError(`${err}`);
-                    }
-                })
-        } else {
-            setError('As senhas não coincidem.')
-        }
-    }
-
     const registerWithCloseFriends = async (newUser) => {
         console.log(newUser)
         if (newUser.password === newUser.password_confirmation) {
@@ -218,7 +198,6 @@ const SessionProvider = ({ children }) => {
                 error,
                 closeWelcomeMessage,
                 cleanError,
-                register,
                 registerWithCloseFriends,
                 registerAndSubscribe,
                 login,
