@@ -22,9 +22,9 @@ export default function PriceChart(props) {
 
     useEffect(() => {
         setLoading(true)
-        fetchApi('price')
+        fetchApi('ticker/search', { ticker: price }, "POST")
             .then(res => {
-                const prices = res.data.price[0].prices
+                const prices = res.data.prices[0].response
                 let newData = {
                     labels: [],
                     datasets: [
@@ -39,8 +39,10 @@ export default function PriceChart(props) {
                 }
 
                 prices.forEach(p => {
-                    newData.datasets[0].data.push(p[price])
-                    newData.labels.push(`${p.Date.split('-')[0]}/${p.Date.split('-')[1]}`)
+                    if (p[price] !== null) {
+                        newData.datasets[0].data.push(p[price])
+                        newData.labels.push(`${p.index.split('-')[0]}/${p.index.split('-')[1]}`)
+                    }
                 })
 
                 setData(newData)
