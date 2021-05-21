@@ -33,19 +33,13 @@ export default function Feedback() {
                 <Box className={classes.cardsContainer}>
                     <Card
                         name="Carlos da Silva"
-                        text="Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                 accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae 
-                 ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
-                  explicabo."
+                        text="O Wolfram das finanças!"
                         picture={profilePic}
                     />
 
                     <Card
                         name="Carlos da Silva"
-                        text="Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                 accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae 
-                 ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
-                  explicabo."
+                        text="Não sou da área, então aprender programação para depois aprender finanças é inviável. A EQ é um grande atalho"
                         picture={profilePic}
                     />
 

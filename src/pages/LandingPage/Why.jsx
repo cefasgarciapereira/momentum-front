@@ -58,25 +58,22 @@ export default function Why() {
                     <Item
                         number="1"
                         title="Científico"
-                        text="Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium 
-                    doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore 
-                    veritatis et quasi architecto beatae vitae dicta sunt explicabo."
+                        text="Os textos didáticos sobre a teoria de finanças e fatores de risco 
+                        são baseados em literatura que vai desde artigos seminais até a literatura moderna de investimentos."
                     />
 
                     <Item
                         number="2"
                         title="Verificabilidade"
-                        text="Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium 
-                    doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore 
-                    veritatis et quasi architecto beatae vitae dicta sunt explicabo."
+                        text="A plataforma ensina técnicas acadêmicas de comparação de estratégias de investimento 
+                        utilizando algoritmos e também permite que o próprio usuário consiga computar e comparar diferentes abordagens"
                     />
 
                     <Item
                         number="3"
                         title="Facilidade"
-                        text="Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium 
-                    doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore 
-                    veritatis et quasi architecto beatae vitae dicta sunt explicabo."
+                        text="A computação das estratégias não exige conhecimentos profundos em diversas linguagens de programação. 
+                        A proposta da easyquant é tornar o conhecimento de investimentos em fatores de risco acessível ao público geral"
                     />
                 </Box>
             </Box>

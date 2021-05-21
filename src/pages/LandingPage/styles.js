@@ -49,7 +49,7 @@ export const useHeroStyles = makeStyles((theme) => ({
 
         [theme.breakpoints.up('md')]: {
             textAlign: 'right',
-            fontSize: '5rem',
+            fontSize: '3.5rem',
             padding: '0 0 0 25%'
         }
     },

@@ -25,8 +25,9 @@ export default function Features() {
             <Card
                 cover={education}
                 title="Educação"
-                text="Conteúdo periódico desenvolvido por experts
-                ensinando elementos da teoria de finanças e fatores de risco"
+                text="Conteúdo periódico desenvolvido por experts ensinando 
+                elementos da teoria de finanças e fatores de risco e que é adotada 
+                pelos fundos quant ao redor do mundo"
             />
 
             <Card

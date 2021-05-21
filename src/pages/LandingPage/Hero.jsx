@@ -16,7 +16,8 @@ export default function Hero() {
         <Box className={classes.root} style={{ height: height }}>
             <Typography variant='h3' align="center" className={classes.title}>
                 <Fade left>
-                    A plataforma que levará seus investimentos a um novo nível
+                    A plataforma que te ensinará a prática dos 
+                    investimentos quant em fatores de risco
                 </Fade>
             </Typography>
 
