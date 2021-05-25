@@ -34,7 +34,6 @@ export default function AddCloseFriends() {
     const handleSubmit = () => {
         const BASE_URL = process.env.REACT_APP_ENV === 'prod' ? "https://easyquant-api.herokuapp.com" :
             process.env.REACT_APP_ENV === 'homolog' ? "https://homolog-momentum-api.herokuapp.com" : 'http://localhost:9000'
-        console.log(`${BASE_URL}/close-friends/add`)
 
         setLoading(true)
         setError(null)
