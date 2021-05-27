@@ -19,6 +19,7 @@ import TimelineOutlinedIcon from '@material-ui/icons/TimelineOutlined';
 import MenuIcon from '@material-ui/icons/Menu';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import DescriptionIcon from '@material-ui/icons/Description';
+import PersonIcon from '@material-ui/icons/Person';
 import { generateAvatar } from 'utils/helper';
 import { useSession } from 'contexts/session';
 import { useTheme } from '@material-ui/core/styles';
@@ -56,6 +57,10 @@ function ResponsiveDrawer(props) {
           <ListItemIcon><TimelineOutlinedIcon /></ListItemIcon>
           <Typography>Estratégias</Typography>
         </ListItem>
+        <ListItem component={RouterLink} to='/perfil' color="primary" button>
+          <ListItemIcon><PersonIcon /></ListItemIcon>
+          <Typography>Perfil</Typography>
+        </ListItem>
       </List>
       <Divider />
       <List>
@@ -83,9 +88,9 @@ function ResponsiveDrawer(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap style={{fontFamily: 'Vudotronic'}}>
-            <div style={{width: 120, height: 32}}>
-              <img src={easyquant} style={{width: '100%', objectFit: 'contain'}} alt="easyquant logotipo"/>
+          <Typography variant="h6" noWrap style={{ fontFamily: 'Vudotronic' }}>
+            <div style={{ width: 120, height: 32 }}>
+              <img src={easyquant} style={{ width: '100%', objectFit: 'contain' }} alt="easyquant logotipo" />
             </div>
           </Typography>
         </Toolbar>

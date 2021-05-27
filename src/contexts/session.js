@@ -21,18 +21,18 @@ const SessionProvider = ({ children }) => {
     const registerWithCloseFriends = async (newUser) => {
         console.log(newUser)
         if (newUser.password === newUser.password_confirmation) {
-            try{
+            try {
                 const response = await axios.post(`${BASE_URL}/user/registerWithCloseFriends`, { ...newUser })
                 const decoded = jwt_decode(response.data.token);
-                setUser({ 
-                    ...decoded.user, 
-                    token: response.data.token, 
-                 });
+                setUser({
+                    ...decoded.user,
+                    token: response.data.token,
+                });
                 return response
-            }catch(err){
+            } catch (err) {
                 throw new Error(parseError(err));
             }
-        }else{
+        } else {
             throw new Error("As senhas não coincidem");
         }
     }
@@ -40,18 +40,18 @@ const SessionProvider = ({ children }) => {
     const registerAndSubscribe = async (newUser) => {
         console.log(newUser)
         if (newUser.password === newUser.password_confirmation) {
-            try{
+            try {
                 const response = await axios.post(`${BASE_URL}/user/registerAndSubscribe`, { ...newUser })
                 const decoded = jwt_decode(response.data.token);
-                setUser({ 
-                    ...decoded.user, 
-                    token: response.data.token, 
-                 });
+                setUser({
+                    ...decoded.user,
+                    token: response.data.token,
+                });
                 return response
-            }catch(err){
+            } catch (err) {
                 throw new Error(parseError(err));
             }
-        }else{
+        } else {
             throw new Error("As senhas não coincidem");
         }
     }
@@ -65,7 +65,7 @@ const SessionProvider = ({ children }) => {
             })
             .catch(err => {
                 console.log(err);
-                if(err.response.data.error.message){
+                if (err.response.data.error.message) {
                     setError(err.response.data.error.message);
                 }
                 else if (err.response.data.error) {
@@ -74,6 +74,11 @@ const SessionProvider = ({ children }) => {
                     setError(`Um erro inesperado ocorreu durante o login: ${error}`)
                 }
             })
+    }
+
+    const updateUser = (tokenizedUser) => {
+        const decoded = jwt_decode(tokenizedUser);
+        setUser({ ...user, ...decoded.user, token: tokenizedUser });
     }
 
     const fetchApi = async (endpoint, bodyParams = {}, method = "GET") => {
@@ -203,6 +208,7 @@ const SessionProvider = ({ children }) => {
                 login,
                 logout,
                 fetchApi,
+                updateUser,
                 requestNewPassword,
                 resetPassword
             }}>

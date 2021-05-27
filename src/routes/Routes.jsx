@@ -11,6 +11,7 @@ export default function Routes() {
   const Post = lazy(() => import('pages/Blog/Post'));
   const ForgotPassword = lazy(() => import('pages/ForgotPassword'))
   const NewPassword = lazy(() => import('pages/ForgotPassword/NewPassword'))
+  const Profile = lazy(() => import('pages/Profile'))
 
   return (
     <Suspense fallback={<LoadingScreen />}>
@@ -29,6 +30,7 @@ export default function Routes() {
                   <Redirect exact from='/' to='/blog' />
                   <Route exact path='/blog' component={Blog} />
                   <Route exact path='/momentum' component={Momentum} />
+                  <Route exact path='/perfil' component={Profile}/>
                   <Route exact path='/post/:id' component={Post}/>
                   <Redirect to='/404'/>
                 </Switch>
