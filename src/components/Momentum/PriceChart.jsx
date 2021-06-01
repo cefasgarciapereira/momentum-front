@@ -9,20 +9,19 @@ import {
 } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import { Line } from '@reactchartjs/react-chart.js';
-import { useSession } from 'contexts/session';
-import { useDeviceDetect } from 'utils/hooks';
+import { useDeviceDetect, useApi } from 'utils/hooks';
 
 export default function PriceChart(props) {
     const { visible, handleClose, price } = props;
-    const { fetchApi } = useSession();
+    const { api } = useApi();
     const { isMobile } = useDeviceDetect();
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState([])
     const [options, setOptions] = useState(null)
 
-    useEffect(() => {
+    const fetchPrices = () => {
         setLoading(true)
-        fetchApi('ticker/search', { ticker: price }, "POST")
+        api.post('ticker/search', { ticker: price })
             .then(res => {
                 const prices = res.data.prices[0].response
                 let newData = {
@@ -64,7 +63,12 @@ export default function PriceChart(props) {
                 console.log(err)
                 setLoading(false)
             })
-    }, [price, fetchApi])
+    }
+
+    useEffect(() => {
+        fetchPrices();
+        // eslint-disable-next-line
+    }, [])
 
     return (
         <Dialog

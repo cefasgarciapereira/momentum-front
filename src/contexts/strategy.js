@@ -5,6 +5,7 @@ import {
     useContext
 } from 'react';
 import { useSession } from 'contexts/session';
+import { useApi } from 'utils/hooks';
 import { useSnackbar } from 'notistack';
 
 const StrategyContext = createContext();
@@ -17,7 +18,8 @@ const initialFilter = {
 }
 
 const StrategyProvider = ({ children }) => {
-    const { fetchApi, user } = useSession();
+    const { user } = useSession();
+    const { api } = useApi();
     const { enqueueSnackbar } = useSnackbar();
     const [momentum, setMomentum] = useState();
     const [filter, setFilter] = useState(initialFilter);
@@ -26,7 +28,7 @@ const StrategyProvider = ({ children }) => {
 
     const filterMomentum = () => {
         setLoading(true);
-        fetchApi('strategy/search', filter)
+        api.get('strategy/search', filter)
             .then(response => {
                 if (!response.data.strategy) {
                     enqueueSnackbar('Essa estratégia não foi encontrada 😔', { variant: "info" })
@@ -43,7 +45,7 @@ const StrategyProvider = ({ children }) => {
 
     const filterBacktest = () => {
         setLoading(true);
-        fetchApi('backtest/search', filter)
+        api.get('backtest/search', filter)
             .then(response => {
                 if (!response.data.backtest) {
                     enqueueSnackbar('Esse backtest não foi encontrada 😔', { variant: "info" })

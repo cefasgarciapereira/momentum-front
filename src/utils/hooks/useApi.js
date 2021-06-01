@@ -9,7 +9,7 @@ const useApi = () => {
 
     const api = axios.create({
         baseURL: BASE_URL,
-        headers: { Authorization: `Bearer ${user.token}` }
+        headers: user && { Authorization: `Bearer ${user.token}`}
     })
 
     return { api };

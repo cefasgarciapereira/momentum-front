@@ -4,18 +4,20 @@ import { Alert } from '@material-ui/lab/';
 import RemoveIcon from '@material-ui/icons/Remove';
 import CloseIcon from '@material-ui/icons/Close';
 import { useSession } from 'contexts/session';
+import { useApi } from 'utils/hooks';
 
 export default function TransitionAlerts() {
-    const { user, closeWelcomeMessage } = useSession();
+    const { user, updateUser } = useSession();
+    const { api } = useApi();
     const [open, setOpen] = useState(true);
 
     const firstName = () => (
         user && user.name ? user.name.split(' ')[0] : ''
     )
 
-    const definitelyClose = async () => {
-        setOpen(false)
-        await closeWelcomeMessage()
+    const closeWelcomeMessage = async () => {
+        await api.post('user/hideMessage', { user: user })
+        updateUser({ ...user, welcome_message: false })
     }
 
     const Actions = () => (
@@ -35,7 +37,7 @@ export default function TransitionAlerts() {
                 aria-label="close"
                 color="inherit"
                 size="small"
-                onClick={definitelyClose}
+                onClick={closeWelcomeMessage}
             >
                 <CloseIcon fontSize="inherit" />
             </IconButton>
@@ -44,13 +46,13 @@ export default function TransitionAlerts() {
 
     return (
         (user && user.welcome_message) ?
-        <Collapse in={open} style={{ margin: '1rem 0' }}>
-            <Alert
-                action={<Actions />}
-            >
-                Olá, <strong>{firstName()}</strong>. Estamos felizes que você tenha se cadastrado na Easy Quant e te desjamos bons investimentos !!
+            <Collapse in={open} style={{ margin: '1rem 0' }}>
+                <Alert
+                    action={<Actions />}
+                >
+                    Olá, <strong>{firstName()}</strong>. Estamos felizes que você tenha se cadastrado na Easy Quant e te desjamos bons investimentos !!
             </Alert>
-        </Collapse>
-        : null
+            </Collapse>
+            : null
     );
 }

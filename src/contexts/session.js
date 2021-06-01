@@ -81,37 +81,6 @@ const SessionProvider = ({ children }) => {
         setUser({ ...user, ...decoded.user, token: tokenizedUser });
     }
 
-    const fetchApi = async (endpoint, bodyParams = {}, method = "GET") => {
-        if (user) {
-            if (method === "GET") {
-                const response = await axios.get(`${BASE_URL}/${endpoint}`, {
-                    headers: { Authorization: `Bearer ${user.token}` },
-                    params: { ...bodyParams }
-                })
-                return response;
-            }
-
-            if (method === "POST") {
-
-                const config = {
-                    headers: { Authorization: `Bearer ${user.token}` },
-                }
-
-                const response = await axios.post(`${BASE_URL}/${endpoint}`, bodyParams, config)
-                return response;
-            }
-        }
-
-        if (!user) {
-            throw new Error('A user must be logged to call this action.');
-        }
-    }
-
-    const closeWelcomeMessage = async () => {
-        await fetchApi('user/hideMessage', { user: user }, "POST")
-        setUser({ ...user, welcome_message: false })
-    }
-
     const logout = async () => {
         setUser(null);
         localStorage.clear();
@@ -201,13 +170,11 @@ const SessionProvider = ({ children }) => {
             value={{
                 user,
                 error,
-                closeWelcomeMessage,
                 cleanError,
                 registerWithCloseFriends,
                 registerAndSubscribe,
                 login,
                 logout,
-                fetchApi,
                 updateUser,
                 requestNewPassword,
                 resetPassword
