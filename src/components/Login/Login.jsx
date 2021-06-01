@@ -8,8 +8,10 @@ import {
     DialogContentText,
     DialogTitle,
     FormHelperText,
-    CircularProgress
-} from '@material-ui/core'
+    CircularProgress,
+    Link
+} from '@material-ui/core';
+import { Link as RouterLink } from 'react-router-dom';
 import { useSession } from 'contexts/session'
 import { useHistory } from 'react-router-dom'
 
@@ -77,6 +79,7 @@ export default function Login() {
                             type="password"
                             required
                         />
+                        <Link color="primary" component={RouterLink} to="/esqueci-minha-senha">Esqueceu sua senha?</Link>
                         <FormHelperText error>{error}</FormHelperText>
                     </form>
                 </DialogContent>

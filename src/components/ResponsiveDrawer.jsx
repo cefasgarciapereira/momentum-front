@@ -57,14 +57,14 @@ function ResponsiveDrawer(props) {
           <ListItemIcon><TimelineOutlinedIcon /></ListItemIcon>
           <Typography>Estratégias</Typography>
         </ListItem>
+      </List>
+      <Divider />
+      <List>
         <ListItem component={RouterLink} to='/perfil' color="primary" button>
           <ListItemIcon><PersonIcon /></ListItemIcon>
           <Typography>Perfil</Typography>
         </ListItem>
-      </List>
-      <Divider />
-      <List>
-        <ListItem button style={{ gap: '1rem' }} onClick={logout} active>
+        <ListItem component={RouterLink} to='/' color="primary" onClick={logout} button>
           <ListItemIcon><ExitToAppIcon /></ListItemIcon>
           <Typography>Sair</Typography>
         </ListItem>

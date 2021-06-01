@@ -38,3 +38,22 @@ export const parseError = (err) => {
         }
     }
 }
+
+export const parseChargeDate = (date) =>{
+    let newDate = new Date(1620064036 * 1000).toLocaleDateString().split('/')
+    return newDate[0]+'/'+newDate[1]
+}
+
+export const stripeStatus = (status) => {
+    const STATUS = {
+        active: 'Ativo',
+        past_due: 'Falha no pagamento',
+        unpaid: 'Não Pago',
+        canceled: 'Cancelado',
+        incomplete: 'Incompleto',
+        incomplete_expired: "Expirado incompleto: a primeira fatura não foi paga dentro de 23 horas",
+        trialing: 'Perído de teste'
+    }
+    
+    return STATUS[status]
+}

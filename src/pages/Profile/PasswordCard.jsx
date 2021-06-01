@@ -10,11 +10,12 @@ import {
 } from '@material-ui/core';
 import { useSession } from 'contexts/session';
 import { Form } from 'components';
-import { useApi } from 'utils/hooks';
+import { useApi, useDeviceDetect } from 'utils/hooks';
 import { parseError } from 'utils/helper';
 
 export default function UserCard() {
     const { user, updateUser } = useSession();
+    const { isMobile } = useDeviceDetect();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null)
     const [values, setValues] = useState({
@@ -60,7 +61,7 @@ export default function UserCard() {
                 <Typography style={{ margin: '1rem 0 0 0' }}>Alterar as senhas de acesso</Typography>
                 <Form
                     onSubmit={handleSubmit}
-                    styles={{ flexDirection: 'row' }}
+                    styles={{ flexDirection: isMobile ? 'column' : 'row' }}
                     error={error}
                 >
                     <TextField

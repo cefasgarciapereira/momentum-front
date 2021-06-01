@@ -19,7 +19,6 @@ const SessionProvider = ({ children }) => {
     const [error, setError] = useState(false);
 
     const registerWithCloseFriends = async (newUser) => {
-        console.log(newUser)
         if (newUser.password === newUser.password_confirmation) {
             try {
                 const response = await axios.post(`${BASE_URL}/user/registerWithCloseFriends`, { ...newUser })
@@ -38,7 +37,6 @@ const SessionProvider = ({ children }) => {
     }
 
     const registerAndSubscribe = async (newUser) => {
-        console.log(newUser)
         if (newUser.password === newUser.password_confirmation) {
             try {
                 const response = await axios.post(`${BASE_URL}/user/registerAndSubscribe`, { ...newUser })

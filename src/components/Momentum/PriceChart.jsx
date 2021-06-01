@@ -19,56 +19,53 @@ export default function PriceChart(props) {
     const [data, setData] = useState([])
     const [options, setOptions] = useState(null)
 
-    const fetchPrices = () => {
+    useEffect(() => {
         setLoading(true)
-        api.post('ticker/search', { ticker: price })
-            .then(res => {
-                const prices = res.data.prices[0].response
-                let newData = {
-                    labels: [],
-                    datasets: [
+        api.post('/ticker/search', { ticker: price })
+        .then(res => {
+            console.log(res);
+            const prices = res.data.prices[0].response
+            let newData = {
+                labels: [],
+                datasets: [
+                    {
+                        label: 'Price',
+                        data: [],
+                        fill: false,
+                        backgroundColor: 'rgb(200, 0, 0)',
+                        borderColor: 'rgba(200, 0, 0, 0.2)',
+                    }
+                ],
+            }
+
+            prices.forEach(p => {
+                if (p[price] !== null) {
+                    newData.datasets[0].data.push(p[price])
+                    newData.labels.push(`${p.index.split('-')[0]}/${p.index.split('-')[1]}`)
+                }
+            })
+
+            setData(newData)
+            setOptions({
+                scales: {
+                    yAxes: [
                         {
-                            label: 'Price',
-                            data: [],
-                            fill: false,
-                            backgroundColor: 'rgb(200, 0, 0)',
-                            borderColor: 'rgba(200, 0, 0, 0.2)',
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            id: 'y-axis-1',
                         }
                     ],
-                }
-
-                prices.forEach(p => {
-                    if (p[price] !== null) {
-                        newData.datasets[0].data.push(p[price])
-                        newData.labels.push(`${p.index.split('-')[0]}/${p.index.split('-')[1]}`)
-                    }
-                })
-
-                setData(newData)
-                setOptions({
-                    scales: {
-                        yAxes: [
-                            {
-                                type: 'linear',
-                                display: true,
-                                position: 'left',
-                                id: 'y-axis-1',
-                            }
-                        ],
-                    },
-                })
-                setLoading(false)
+                },
             })
-            .catch(err => {
-                console.log(err)
-                setLoading(false)
-            })
-    }
-
-    useEffect(() => {
-        fetchPrices();
+            setLoading(false)
+        })
+        .catch(err => {
+            console.log(err)
+            setLoading(false)
+        })
         // eslint-disable-next-line
-    }, [])
+    }, [price])
 
     return (
         <Dialog
