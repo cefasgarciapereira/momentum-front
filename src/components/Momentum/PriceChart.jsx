@@ -32,8 +32,8 @@ export default function PriceChart(props) {
                         label: 'Price',
                         data: [],
                         fill: false,
-                        backgroundColor: 'rgb(200, 0, 0)',
-                        borderColor: 'rgba(200, 0, 0, 0.2)',
+                        backgroundColor: '#1DDB43',
+                        borderColor: '#1DDB43',
                     }
                 ],
             }
@@ -47,6 +47,11 @@ export default function PriceChart(props) {
 
             setData(newData)
             setOptions({
+                elements:{
+                    point: {
+                        radius: 1
+                    }
+                },
                 scales: {
                     yAxes: [
                         {
