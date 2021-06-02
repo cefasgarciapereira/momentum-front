@@ -3,7 +3,8 @@ import {
     Typography,
     Card,
     CardContent,
-    CardActions
+    CardActions,
+    Grid,
 } from '@material-ui/core';
 import { useSession } from 'contexts/session';
 import { useApi } from 'utils/hooks';
@@ -72,8 +73,18 @@ export default function CustomerCard() {
                 <Typography variant="h5">Dados da Assinatura</Typography>
                 <Typography style={{ margin: '1rem 0 0 0' }}>Visulize os dados associados à sua assinatura</Typography>
 
-                <Typography variant="h6" style={{ margin: '.5rem 0' }}>Detalhes do Plano</Typography>
+                <Typography variant="h6" style={{ margin: '1rem 0 .5rem 0' }}>Detalhes do Plano</Typography>
+
                 <Typography><strong>Plano:</strong> {planTitle[values.plan.id]}</Typography>
+                <Grid
+                    container
+                    direction="row"
+                    alignItems="center"
+                >
+                    <Typography style={{margin: '0 .5rem 0 0'}}><strong>Código: </strong></Typography>
+                    <Typography variant="caption" style={{padding: '.3rem', backgroundColor: 'rgba(80,80,80,.1)', borderRadius: '5px'}}>{values.plan.id}</Typography>
+                </Grid>
+
                 <Typography><strong>Status:</strong> {stripeStatus(values.status)}</Typography>
                 <Typography><strong>Valor:</strong> R$ {parseFloat(values.plan.amount / 100).toFixed(2)}/{intervals[values.plan.interval]}</Typography>
                 <Typography><strong>Dia de Cobrança:</strong> {parseChargeDate(values.start_date)}</Typography>
