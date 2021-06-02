@@ -4,7 +4,8 @@ import logo from 'assets/opacity-logo.svg';
 export const useMainStyles = makeStyles((theme) => ({
     root: {
         margin: 0,
-        padding: 0
+        padding: 0,
+        scrollBehavior: 'smooth'
     }
 }));
 

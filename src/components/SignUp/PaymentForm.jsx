@@ -34,9 +34,9 @@ export default function PersonalForm(props) {
                         id: 'outlined-age-native-simple',
                     }}
                 >
-                    <option value="monthly">Mensal - R$29,90</option>
-                    <option value="quaterly">Trimestral - R$73,90</option>
-                    <option value="yearly">Anual - R$ 238,90</option>
+                    <option value="monthly">Mensal - R$29,90 / mês</option>
+                    <option value="quarterly">Trimestral - R$73,90 / trimestre</option>
+                    <option value="annual">Anual - R$ 238,90 / ano</option>
                 </Select>
             </FormControl>
 

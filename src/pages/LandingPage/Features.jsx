@@ -21,7 +21,7 @@ export default function Features() {
     )
 
     return (
-        <Box className={classes.root}>
+        <Box className={classes.root} id="features">
             <Card
                 cover={education}
                 title="Educação"

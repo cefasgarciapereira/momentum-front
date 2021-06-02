@@ -40,7 +40,7 @@ export const parseError = (err) => {
 }
 
 export const parseChargeDate = (date) =>{
-    let newDate = new Date(1620064036 * 1000).toLocaleDateString().split('/')
+    let newDate = new Date(date * 1000).toLocaleDateString().split('/')
     return newDate[0]+'/'+newDate[1]
 }
 

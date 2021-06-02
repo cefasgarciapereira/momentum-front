@@ -13,7 +13,7 @@ export default function Hero() {
     const height = `calc(100vh - ${headerHeight}px)`
 
     return (
-        <Box className={classes.root} style={{ height: height }}>
+        <Box className={classes.root} style={{ height: height }} id="hero">
             <Typography variant='h3' align="center" className={classes.title}>
                 <Fade left>
                     A plataforma que te ensinará a prática dos 

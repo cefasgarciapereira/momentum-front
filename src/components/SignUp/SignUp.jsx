@@ -37,7 +37,7 @@ export default function SignUp() {
 
     return (
         <div>
-            <c onClick={!open && handleClickOpen}>Cadastrar</c>
+            <p onClick={!open && handleClickOpen} style={{margin: 0}}>Cadastrar</p>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" fullWidth maxWidth="sm">
                 <DialogTitle id="form-dialog-title">Cadastrar</DialogTitle>
                 {

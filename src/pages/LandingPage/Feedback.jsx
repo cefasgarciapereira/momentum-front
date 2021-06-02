@@ -22,7 +22,7 @@ export default function Feedback() {
     }
 
     return (
-        <Box className={classes.root}>
+        <Box className={classes.root} id="feedback">
             <Typography variant="h4" align="center" className={classes.title}>
                 <Fade left>
                     A impressão de quem já usa a Easy Quant

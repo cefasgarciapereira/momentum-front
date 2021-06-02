@@ -9,7 +9,7 @@ export default function Footer(){
     const classes = useFooterStyles();
 
     return(
-        <Box className={classes.root}>
+        <Box className={classes.root} id="footer">
             <img className={classes.logo} src={logo} alt="Footer Easyqaunt Logo"/>
             <Box className={classes.linkContainer}>
                 <Button color="secondary">Home</Button>

@@ -11,6 +11,7 @@ import { useSession } from 'contexts/session';
 import AddressForm from './AddressForm';
 import PersonalForm from './PersonalForm';
 import PaymentForm from './PaymentForm';
+import plans from 'utils/plans';
 import { subscription as initialValues } from './initialState';
 
 export default function SubscriptionForm(props) {
@@ -58,7 +59,7 @@ export default function SubscriptionForm(props) {
         let params = values;
         params.card_exp_month=values.card_expiry.split('/')[0]
         params.card_exp_year=values.card_expiry.split('/')[1]
-        params.plan_id = 'price_1In5oRIoqiuDenozaQ0lNzeP'
+        params.plan_id = plans[values.plan]
         console.log(params);
         setLoading(true);
         registerAndSubscribe(params)

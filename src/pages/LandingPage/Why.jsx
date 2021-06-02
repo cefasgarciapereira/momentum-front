@@ -34,7 +34,7 @@ export default function Why() {
 
     return (
         <Fade>
-            <Box className={classes.root}>
+            <Box className={classes.root}  id="why">
                 <Typography
                     variant="h4"
                     align="center"

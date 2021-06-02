@@ -19,6 +19,11 @@ export default function Header() {
         setAnchorEl(null);
     };
 
+    function jumpTo(anchor) {
+        window.location.href = "#" + anchor;
+        setAnchorEl(null);
+    }
+
     if (isMobile) {
         return (
             <Box className={classes.root} id="header">
@@ -33,12 +38,12 @@ export default function Header() {
                     open={Boolean(anchorEl)}
                     onClose={handleClose}
                 >
-                    <MenuItem onClick={handleClose}>Home</MenuItem>
-                    <MenuItem onClick={handleClose}>Por Que?</MenuItem>
-                    <MenuItem onClick={handleClose}>Depoimentos</MenuItem>
-                    <MenuItem onClick={handleClose}>Planos</MenuItem>
+                    <MenuItem onClick={() => jumpTo('home')}>Home</MenuItem>
+                    <MenuItem onClick={() => jumpTo('why')}>Por Que?</MenuItem>
+                    <MenuItem onClick={() => jumpTo('feedback')}>Depoimentos</MenuItem>
+                    <MenuItem onClick={() => jumpTo('plans')}>Planos</MenuItem>
                     <MenuItem><Login /></MenuItem>
-                    <MenuItem onClick={handleClose}><SignUp/></MenuItem>
+                    <MenuItem onClick={handleClose}><SignUp /></MenuItem>
                 </Menu>
             </Box>
         )
@@ -47,12 +52,12 @@ export default function Header() {
     return (
         <Box className={classes.root} id="header">
             <img src={textLogo} alt="Easy Quant Logo" className={classes.logo} />
-            <Box style={{display: 'flex'}}>
-                <Button onClick={handleClose}>Home</Button>
-                <Button onClick={handleClose}>Por Que?</Button>
-                <Button onClick={handleClose}>Depoimentos</Button>
-                <Button onClick={handleClose}>Planos</Button>
-                <Button variant="outlined" color="primary" style={{margin: '0 1rem'}}><SignUp/></Button>
+            <Box style={{ display: 'flex' }}>
+                <Button href="#home">Home</Button>
+                <Button href="#why">Por Que?</Button>
+                <Button href="#feedback">Depoimentos</Button>
+                <Button href="#plans">Planos</Button>
+                <Button variant="outlined" color="primary" style={{ margin: '0 1rem' }}><SignUp /></Button>
                 <Button variant="contained" color="primary"><Login /></Button>
             </Box>
         </Box>

@@ -1,6 +1,8 @@
 import { Box, Paper, Typography, Button } from '@material-ui/core'
-import { usePlansStyles } from './styles'
 import Fade from 'react-reveal/Fade'
+
+import { SignUp } from 'components';
+import { usePlansStyles } from './styles'
 
 export default function Plans() {
     const classes = usePlansStyles();
@@ -10,13 +12,13 @@ export default function Plans() {
             <Typography variant="h5">{title}</Typography>
             <Typography align="center" variant="h3">{price}</Typography>
             <Button variant="contained" color="primary">
-                Começar
+                <SignUp/>
             </Button>
         </Paper>
     )
 
     return (
-        <Box className={classes.root}>
+        <Box className={classes.root} id="plans">
             <Typography variant="h4" align="center" className={classes.title}>
                 Comece agora a melhorar
                 seus investimentos
