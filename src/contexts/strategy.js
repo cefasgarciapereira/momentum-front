@@ -28,36 +28,40 @@ const StrategyProvider = ({ children }) => {
 
     const filterMomentum = () => {
         setLoading(true);
-        api.get('strategy/search', filter)
-            .then(response => {
-                if (!response.data.strategy) {
-                    enqueueSnackbar('Essa estratégia não foi encontrada 😔', { variant: "info" })
-                } else {
-                    setMomentum(response.data.strategy)
-                }
-                setLoading(false);
-            })
-            .catch(err => {
-                console.log(err)
-                setLoading(false);
-            })
+        api.get('/strategy/search', {
+            params: {...filter}
+        })
+        .then(response => {
+            if (!response.data.strategy) {
+                enqueueSnackbar('Essa estratégia não foi encontrada 😔', { variant: "info" })
+            } else {
+                setMomentum(response.data.strategy)
+            }
+            setLoading(false);
+        })
+        .catch(err => {
+            console.log(err)
+            setLoading(false);
+        })
     }
 
     const filterBacktest = () => {
         setLoading(true);
-        api.get('backtest/search', filter)
-            .then(response => {
-                if (!response.data.backtest) {
-                    enqueueSnackbar('Esse backtest não foi encontrada 😔', { variant: "info" })
-                } else {
-                    setBacktest(response.data.backtest)
-                }
-                setLoading(false);
-            })
-            .catch(err => {
-                console.log(err)
-                setLoading(false);
-            })
+        api.get('/backtest/search', {
+            params: {...filter}
+        })
+        .then(response => {
+            if (!response.data.backtest) {
+                enqueueSnackbar('Esse backtest não foi encontrada 😔', { variant: "info" })
+            } else {
+                setBacktest(response.data.backtest)
+            }
+            setLoading(false);
+        })
+        .catch(err => {
+            console.log(err)
+            setLoading(false);
+        })
     }
 
     const applyFilter = () => {

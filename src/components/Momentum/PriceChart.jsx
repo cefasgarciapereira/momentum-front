@@ -23,13 +23,12 @@ export default function PriceChart(props) {
         setLoading(true)
         api.post('/ticker/search', { ticker: price })
         .then(res => {
-            console.log(res);
             const prices = res.data.prices[0].response
             let newData = {
                 labels: [],
                 datasets: [
                     {
-                        label: 'Price',
+                        label: 'Valor',
                         data: [],
                         fill: false,
                         backgroundColor: '#1DDB43',

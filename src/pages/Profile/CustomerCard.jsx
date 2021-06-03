@@ -32,12 +32,12 @@ export default function CustomerCard() {
                     subscription_id: user.subscription_id
                 }
             })
-                .then(res => {
-                    const subscription = res.data.subscription;
-                    setValues(subscription)
-                    fetchPaymentMethod(subscription.default_payment_method)
-                })
-                .catch(err => setError(parseError(err)))
+            .then(res => {
+                const subscription = res.data.subscription;
+                setValues(subscription)
+                fetchPaymentMethod(subscription.default_payment_method)
+            })
+            .catch(err => setError(parseError(err)))
         }
         // eslint-disable-next-line
     }, [user])
@@ -48,14 +48,14 @@ export default function CustomerCard() {
                 payment_method_id: paymentMethodId
             }
         })
-            .then(res => {
-                const data = res.data.paymentMethod.card;
-                const billing = res.data.paymentMethod.billing_details;
+        .then(res => {
+            const data = res.data.paymentMethod.card;
+            const billing = res.data.paymentMethod.billing_details;
 
-                setCard(data)
-                setBillingDetails(billing)
-            })
-            .catch(err => setError(parseError(err)))
+            setCard(data)
+            setBillingDetails(billing)
+        })
+        .catch(err => setError(parseError(err)))
     }
 
     if (!values) return (
