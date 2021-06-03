@@ -61,6 +61,8 @@ export default function FilterDialog(props) {
                     >
                         <MenuItem value="IBOV">Ibovespa</MenuItem>
                         <MenuItem value="IBRA">Ibra</MenuItem>
+                        <MenuItem value="IBXX">IBXX</MenuItem>
+                        <MenuItem value="IBXL">IBXL</MenuItem>
                     </Select>
                 </FormControl>
 
