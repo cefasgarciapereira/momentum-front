@@ -34,6 +34,7 @@ export default function CustomerCard() {
             })
             .then(res => {
                 const subscription = res.data.subscription;
+                console.log(subscription);
                 setValues(subscription)
                 fetchPaymentMethod(subscription.default_payment_method)
             })
@@ -85,7 +86,10 @@ export default function CustomerCard() {
                     <Typography variant="caption" style={{padding: '.3rem', backgroundColor: 'rgba(80,80,80,.1)', borderRadius: '5px'}}>{values.plan.id}</Typography>
                 </Grid>
 
-                <Typography><strong>Status:</strong> {stripeStatus(values.status)}</Typography>
+                <Typography>
+                    <strong>Status:</strong> {stripeStatus(values.status)}
+                    {values.cancel_at_period_end && " | cancelamento agendado"}
+                </Typography>
                 <Typography><strong>Valor:</strong> R$ {parseFloat(values.plan.amount / 100).toFixed(2)}/{intervals[values.plan.interval]}</Typography>
                 <Typography><strong>Dia de Cobrança:</strong> {parseChargeDate(values.start_date)}</Typography>
 
