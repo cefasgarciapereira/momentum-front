@@ -1,9 +1,11 @@
+import { Fragment } from 'react';
 import { useSession } from 'contexts/session';
 
 import { Page } from 'components';
 import UserCard from './UserCard';
 import PasswordCard from './PasswordCard';
 import CustomerCard from './CustomerCard';
+import ActionsCard from './ActionsCard';
 
 function Profile() {
     const { user } = useSession();
@@ -11,10 +13,13 @@ function Profile() {
     return (
         <Page title="Perfil">
             <UserCard />
-            <PasswordCard/>
+            <PasswordCard />
             {
                 user.subscription_id &&
-                <CustomerCard/>
+                <Fragment>
+                    <CustomerCard />
+                    <ActionsCard />
+                </Fragment>
             }
         </Page>
     )
