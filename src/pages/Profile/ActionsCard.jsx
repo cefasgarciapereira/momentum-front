@@ -82,7 +82,7 @@ export default function ActionsCard() {
                 </Button>
 
                 <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                    <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+                    <DialogTitle id="form-dialog-title">Alterar Plano</DialogTitle>
                     <DialogContent>
                         <DialogContentText>
                             Escolha o novo plano que você deseja aderir.
