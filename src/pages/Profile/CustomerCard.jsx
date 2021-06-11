@@ -34,7 +34,6 @@ export default function CustomerCard() {
             })
             .then(res => {
                 const subscription = res.data.subscription;
-                console.log(subscription);
                 setValues(subscription)
                 fetchPaymentMethod(subscription.default_payment_method)
             })
