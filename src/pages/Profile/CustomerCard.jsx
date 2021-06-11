@@ -88,9 +88,9 @@ export default function CustomerCard() {
 
                 <Typography>
                     <strong>Status:</strong> {stripeStatus(values.status)}
-                    {values.cancel_at_period_end && ` com cancelamento agendado para ${parseChargeDate(values.cancel_at)}`}
+                    {values.cancel_at_period_end && ` com cancelamento agendado para ${parseChargeDate(values.current_period_end)}`}
                 </Typography>
-                <Typography><strong>Valor:</strong> R$ {parseFloat(values.plan.amount / 100).toFixed(2)}/{intervals[values.plan.interval]}</Typography>
+                <Typography><strong>Valor:</strong> R$ {parseFloat(values.plan.amount / 100).toFixed(2)} / {values.plan.interval_count} {intervals[values.plan.interval]}</Typography>
                 <Typography><strong>Dia de Cobrança:</strong> {parseChargeDate(values.start_date)}</Typography>
 
                 {
