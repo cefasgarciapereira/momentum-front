@@ -31,7 +31,7 @@ export default function Routes() {
                   <Route exact path='/blog' component={Blog} />
                   <Route exact path='/momentum' component={Momentum} />
                   <Route exact path='/perfil' component={Profile}/>
-                  <Route exact path='/post/:id' component={Post}/>
+                  <Route path='/post/:id' component={Post}/>
                   <Redirect to='/404'/>
                 </Switch>
               </Suspense>

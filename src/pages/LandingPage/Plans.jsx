@@ -24,20 +24,25 @@ export default function Plans() {
                 seus investimentos
             </Typography>
 
+            <Typography variant="h6" align="center" className={classes.subtitle}>
+                Você tem 7 dias grátis para testar qualquer plano.
+            </Typography>
+
+
             <Fade bottom cascade>
                 <Box className={classes.cardsContainer}>
 
                     <Card
                         title="Mensal"
-                        price="R$ 29,90"
+                        price="R$ 19,90"
                     />
                     <Card
-                        title="Trimestral"
-                        price="R$ 73,90"
+                        title="Semestral"
+                        price="R$ 109,90"
                     />
                     <Card
                         title="Anual"
-                        price="R$ 238,90"
+                        price="R$ 189,90"
                     />
                 </Box>
 

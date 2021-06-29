@@ -51,29 +51,29 @@ export default function Why() {
                     Em 1973 o professor Burton Malkiel da Universidade de Princeton afirmou em seu livro,
                     A Random Walk Down Wall Street, que um macaco vendado jogando dardos nas páginas de um
                     jornal de finanças poderia selecionar um portfólio que performaria tão bem quanto um
-                    cuidadosamente selecionado por especialistas.
+                    cuidadosamente selecionado por especialistas. Porém, um método verdadeiramente eficiente não se pauta no acaso! A Easy Quant é...
             </Typography>
 
                 <Box className={classes.itemsContainer}>
                     <Item
                         number="1"
                         title="Científico"
-                        text="Os textos didáticos sobre a teoria de finanças e fatores de risco 
-                        são baseados em literatura que vai desde artigos seminais até a literatura moderna de investimentos."
+                        text="	A literatura em finanças quantitativas é vasta em mostrar a existência de 
+                        prêmios para fatores sistemáticos em diversas áreas da economia, 
+                        diversos países e em diversos momentos do tempo."
                     />
 
                     <Item
                         number="2"
                         title="Verificabilidade"
-                        text="A plataforma ensina técnicas acadêmicas de comparação de estratégias de investimento 
-                        utilizando algoritmos e também permite que o próprio usuário consiga computar e comparar diferentes abordagens"
+                        text="Os investimentos sistemáticos minimizam a subjetividade do investidor, sendo baseados em sinais gerados pelos dados."
                     />
 
                     <Item
                         number="3"
                         title="Facilidade"
-                        text="A computação das estratégias não exige conhecimentos profundos em diversas linguagens de programação. 
-                        A proposta da easyquant é tornar o conhecimento de investimentos em fatores de risco acessível ao público geral"
+                        text="A Easy Quant ensina de maneira objetiva e simples o que são os fatores e como são formadas as estratégias sistemáticas de investimento,  
+                        fornecendo conjuntamente uma ferramenta computacional que permite a visualização e a avaliação das estratégias de investimento baseadas em fatores."
                     />
                 </Box>
             </Box>

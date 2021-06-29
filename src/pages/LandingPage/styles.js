@@ -37,21 +37,27 @@ export const useHeroStyles = makeStyles((theme) => ({
         boxSizing: 'border-box',
 
         [theme.breakpoints.up('md')]: {
+            flexDirection: 'row',
             backgroundSize: 'contain',
             backgroundPosition: 'center left',
-            flexDirection: 'row',
             justifyContent: 'space-between',
-            padding: '0 4rem'
+            padding: '0 5rem'
         }
     },
     title: {
         fontWeight: 'bold',
-        maxWidth: '600px',
+        maxWidth: '700px',
 
         [theme.breakpoints.up('md')]: {
-            textAlign: 'right',
-            fontSize: '3.5rem',
-            padding: '0 0 0 25%'
+            textAlign: 'left',
+            fontSize: '3rem',
+        }
+    },
+    devices: {
+        display: 'none',
+        [theme.breakpoints.up('lg')]: {
+            display: 'block',
+            width: '35%'
         }
     },
     socialMedia: {
@@ -236,6 +242,12 @@ export const usePlansStyles = makeStyles((theme) => ({
         [theme.breakpoints.up('md')]: {
             fontSize: '3rem'
         }
+    },
+    subtitle: {
+        color: 'rgba(0,0,0, .7)',
+        maxWidth: '800px',
+        alignSelf: 'center',
+        fontWeight: '100'
     },
     cardsContainer: {
         display: 'flex',

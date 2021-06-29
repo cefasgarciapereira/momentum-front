@@ -25,25 +25,19 @@ export default function Features() {
             <Card
                 cover={education}
                 title="Educação"
-                text="Conteúdo periódico desenvolvido por experts ensinando 
-                elementos da teoria de finanças e fatores de risco e que é adotada 
-                pelos fundos quant ao redor do mundo"
+                text="Conteúdo periódico desenvolvido por experts ensinando elementos da teoria de finanças e fatores de risco amplamente utilizados por acadêmicos e gestores"
             />
 
             <Card
                 cover={chart}
-                title="Técnicas"
-                text="A EasyQuant é uma plataforma baseada no  investimento em fatores
-                e mostra na prática as técnicas desenvolvidas e popularizadas no
-                exterior, ainda pouco utilizada pelos investidores individuais no Brasil"
+                title="Acompanhamento"
+                text="Acompanhamento diário da evolução dos fatores de risco"
             />
 
             <Card
                 cover={tools}
                 title="Ferramentas"
-                text="Plataforma completa para você computar carteiras com diferentes
-                estratégias, smart-beta, avaliação de desempenho, comparação
-                com benchmarks e backtests"
+                text="Plataforma completa para você computar carteiras com diferentes parâmetros quantitativos, comparar diferentes especificações com benchmarks e backtests"
             />
         </Box>
     )
