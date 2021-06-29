@@ -57,7 +57,7 @@ export default function Why() {
                 <Box className={classes.itemsContainer}>
                     <Item
                         number="1"
-                        title="Científico"
+                        title="Científica"
                         text="	A literatura em finanças quantitativas é vasta em mostrar a existência de 
                         prêmios para fatores sistemáticos em diversas áreas da economia, 
                         diversos países e em diversos momentos do tempo."
@@ -65,13 +65,13 @@ export default function Why() {
 
                     <Item
                         number="2"
-                        title="Verificabilidade"
+                        title="Verificável"
                         text="Os investimentos sistemáticos minimizam a subjetividade do investidor, sendo baseados em sinais gerados pelos dados."
                     />
 
                     <Item
                         number="3"
-                        title="Facilidade"
+                        title="Fácil"
                         text="A Easy Quant ensina de maneira objetiva e simples o que são os fatores e como são formadas as estratégias sistemáticas de investimento,  
                         fornecendo conjuntamente uma ferramenta computacional que permite a visualização e a avaliação das estratégias de investimento baseadas em fatores."
                     />
