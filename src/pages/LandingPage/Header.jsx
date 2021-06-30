@@ -42,8 +42,8 @@ export default function Header() {
                     <MenuItem onClick={() => jumpTo('why')}>Por Que?</MenuItem>
                     <MenuItem onClick={() => jumpTo('feedback')}>Depoimentos</MenuItem>
                     <MenuItem onClick={() => jumpTo('plans')}>Planos</MenuItem>
-                    <MenuItem component={Link} to="/cadastrar"><Login /></MenuItem>
-                    <MenuItem onClick={handleClose}>Cadastrar</MenuItem>
+                    <MenuItem component={Link} href="/cadastrar">Cadastrar</MenuItem>
+                    <MenuItem component={Link} href="/login">Entrar</MenuItem>
                 </Menu>
             </Box>
         )

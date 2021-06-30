@@ -247,9 +247,9 @@ export default function SignUp() {
                                         id: 'outlined-age-native-simple',
                                     }}
                                 >
-                                    <option value="monthly">Mensal - R$29,90 / mês</option>
-                                    <option value="quarterly">Trimestral - R$73,90 / trimestre</option>
-                                    <option value="annual">Anual - R$ 238,90 / ano</option>
+                                    <option value="monthly">Mensal - R$19,90 / mês</option>
+                                    <option value="quarterly">Trimestral - R$109,90 / semestre</option>
+                                    <option value="annual">Anual - R$ 189,90 / ano</option>
                                 </Select>
                             </FormControl>
                         </Grid>
@@ -282,7 +282,7 @@ export default function SignUp() {
                             />
                         </Grid>
 
-                        <Grid item sm={12} md={6}>
+                        <Grid item xs={12} md={6}>
                             <MaskedInput
                                 fullWidth
                                 value={values.card_expiry}
@@ -296,7 +296,7 @@ export default function SignUp() {
                             />
                         </Grid>
 
-                        <Grid item sm={12} md={6}>
+                        <Grid item xs={12} md={6}>
                             <TextField
                                 fullWidth
                                 value={values.cvc}

@@ -47,6 +47,7 @@ export const useHeroStyles = makeStyles((theme) => ({
     title: {
         fontWeight: 'bold',
         maxWidth: '700px',
+        padding: '1rem',
 
         [theme.breakpoints.up('md')]: {
             textAlign: 'left',
