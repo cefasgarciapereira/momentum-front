@@ -1,7 +1,6 @@
 import { Box, Paper, Typography, Button } from '@material-ui/core'
 import Fade from 'react-reveal/Fade'
 
-import { SignUp } from 'components';
 import { usePlansStyles } from './styles'
 
 export default function Plans() {
@@ -11,8 +10,8 @@ export default function Plans() {
         <Paper className={classes.paper} elevation={5}>
             <Typography variant="h5">{title}</Typography>
             <Typography align="center" variant="h3">{price}</Typography>
-            <Button variant="contained" color="primary">
-                <SignUp/>
+            <Button variant="contained" color="primary" href="/cadastrar">
+                Começar
             </Button>
         </Paper>
     )
