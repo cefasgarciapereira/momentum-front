@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Box, IconButton, Menu, MenuItem, Button, Link } from '@material-ui/core';
-import { Login } from 'components';
 import MenuIcon from '@material-ui/icons/Menu';
 import textLogo from 'assets/black-text-logo.svg';
 import { useHeaderStyles } from './styles';

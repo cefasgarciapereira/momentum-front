@@ -11,27 +11,20 @@ import {
     Container,
     FormHelperText
 } from '@material-ui/core';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
 import { Logo, Copyright } from 'components';
 import { useSession } from 'contexts/session';
 import { useHistory } from 'react-router-dom';
 
 
-export default function SignIn(props) {
+export default function SignIn() {
     const classes = useStyles();
-    const { navigateTo } = props;
-    const { login, error, user, cleanError } = useSession();
+    const { login, error, user } = useSession();
     const [values, setValues] = useState(initialState);
     const [loading, setLoading] = useState(false);
     const history = useHistory();
 
     useEffect(() => user && history.push('/home'), [user, history])
-
-    const handleNavigation = () => {
-        cleanError()
-        navigateTo('signup')
-    }
 
     const handleChange = (event) => {
         setValues({
