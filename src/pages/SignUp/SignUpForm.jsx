@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import {
-    Avatar,
     Button,
     CssBaseline,
     TextField,
@@ -19,12 +18,10 @@ import {
     Select,
     FormHelperText
 } from '@material-ui/core';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Cards from 'react-credit-cards';
 
-
 import { useSession } from 'contexts/session';
-import { Copyright, MaskedInput } from 'components';
+import { Copyright, MaskedInput, Logo } from 'components';
 import plans from 'utils/plans';
 
 const useStyles = makeStyles((theme) => ({
@@ -78,17 +75,16 @@ export default function SignUp() {
         params.card_exp_month = values.card_expiry.split('/')[0]
         params.card_exp_year = values.card_expiry.split('/')[1]
         params.plan_id = plans[values.plan]
-        console.log(params);
         setLoading(true);
         registerAndSubscribe(params)
-            .then(res => {
-                console.log(res)
-                setLoading(false)
-            })
-            .catch(err => {
-                setError(err.message)
-                setLoading(false)
-            })
+        .then(res => {
+            console.log(res)
+            setLoading(false)
+        })
+        .catch(err => {
+            setError(err.message)
+            setLoading(false)
+        })
     }
 
 
@@ -96,13 +92,7 @@ export default function SignUp() {
         <Container component="main" maxWidth="xs">
             <CssBaseline />
             <div className={classes.paper}>
-                <Avatar className={classes.avatar}>
-                    <LockOutlinedIcon />
-                </Avatar>
-                <Typography component="h1" variant="h5">
-                    Cadastrar
-                </Typography>
-
+                <Logo style={{width: '50%'}}/>
                 <form className={classes.form} noValidate>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
