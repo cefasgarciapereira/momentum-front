@@ -1,38 +1,156 @@
-import { useState } from 'react';
-import { Page } from 'components';
-import { Box, Typography, Paper } from '@material-ui/core';
-import { Link as RouterLink } from 'react-router-dom';
-import LoginForm from './LoginForm';
-import SignUpForm from './SignUpForm';
-import { useLoginStyles } from './styles';
-import easyquant from 'assets/easyquant-colored.svg';
+import { useState, useEffect } from 'react';
+import {
+    CircularProgress,
+    Button,
+    CssBaseline,
+    TextField,
+    Link,
+    Grid,
+    Box,
+    makeStyles,
+    Container,
+    FormHelperText
+} from '@material-ui/core';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
-export default function Login() {
-    const classes = useLoginStyles();
-    const [screen, setScreen] = useState('login')
+import { Logo, Copyright } from 'components';
+import { useSession } from 'contexts/session';
+import { useHistory } from 'react-router-dom';
+
+
+export default function SignIn(props) {
+    const classes = useStyles();
+    const { navigateTo } = props;
+    const { login, error, user, cleanError } = useSession();
+    const [values, setValues] = useState(initialState);
+    const [loading, setLoading] = useState(false);
+    const history = useHistory();
+
+    useEffect(() => user && history.push('/home'), [user, history])
+
+    const handleNavigation = () => {
+        cleanError()
+        navigateTo('signup')
+    }
+
+    const handleChange = (event) => {
+        setValues({
+            ...values,
+            [event.target.name]: event.target.value
+        });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        setLoading(true);
+        await login(values)
+        setLoading(false);
+    }
 
     return (
-        <div className={classes.container}>
-            <Box className={classes.image}>
-            </Box>
-            <Paper className={classes.form} elevation={3} style={{ overflow: 'auto' }}>
-                <Page title="Entrar" style={{ width: '100%' }}>
-                    <Box style={{ width: '100%' }}>
-                        <img src={easyquant} style={{ width: '30%', objectFit: 'contain' }} alt="easyquant logotipo" />
-                    </Box>
-                    {screen === 'login' &&
-                        <LoginForm navigateTo={setScreen} />
-                    }
+        <Container component="main" maxWidth="xs">
+            <CssBaseline />
+            <div className={classes.paper}>
+                <Logo style={{ width: '50%' }} />
+                <form className={classes.form} noValidate>
+                    <Grid container spacing={2}>
+                        <Grid item xs={12}>
+                            <TextField
+                                fullWidth
+                                value={values.email}
+                                onChange={handleChange}
+                                label="E-mail"
+                                variant="outlined"
+                                name="email"
+                                required
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                fullWidth
+                                value={values.password}
+                                onChange={handleChange}
+                                label="Senha"
+                                variant="outlined"
+                                type="password"
+                                name="password"
+                                required
+                            />
+                        </Grid>
 
-                    {screen === 'signup' &&
-                        <SignUpForm navigateTo={setScreen} />
-                    }
-                    <Box style={{ width: '100%' }} display="flex" alignItems="center" justifyContent="space-between">
-                        <Typography variant="caption">Copyright © Momentum 2021.</Typography>
-                        <Typography variant="caption" component={RouterLink} to="/esqueci-minha-senha">Esqueceu sua senha?</Typography>
-                    </Box>
-                </Page>
-            </Paper>
-        </div>
-    )
+                        <Grid item xs={12}>
+                            <FormHelperText error>{error}</FormHelperText>
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <Button
+                                fullWidth
+                                label="Entrar"
+                                variant="contained"
+                                color="primary"
+                                loading='true'
+                                type="submit"
+                                endIcon={loading && <CircularProgress color="white" size={24} />}
+                                onClick={handleSubmit}
+                            >
+                                Entrar
+                            </Button>
+                            <Button
+                                variant="outlined"
+                                color="primary"
+                                href="/home"
+                                fullWidth
+                                style={{
+                                    margin: '.5rem 0 2rem 0'
+                                }}
+                            >
+                                Voltar
+                            </Button>
+                        </Grid>
+                        <Grid container>
+                            <Grid item xs>
+                                <Link href="/esqueci-minha-senha" variant="body2">
+                                    Esqueceu sua senha?
+                                </Link>
+                            </Grid>
+
+                            <Grid item>
+                                <Link href="/cadastrar" variant="body2">
+                                    Não possui uma conta? Cadastre-se
+                                </Link>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </form>
+            </div>
+            <Box mt={8}>
+                <Copyright />
+            </Box>
+        </Container>
+    );
 }
+
+const initialState = {
+    email: '',
+    password: '',
+}
+
+const useStyles = makeStyles((theme) => ({
+    paper: {
+        marginTop: theme.spacing(8),
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+    },
+    avatar: {
+        margin: theme.spacing(1),
+        backgroundColor: theme.palette.secondary.main,
+    },
+    form: {
+        width: '100%', // Fix IE 11 issue.
+        marginTop: theme.spacing(1),
+    },
+    submit: {
+        margin: theme.spacing(3, 0, 2),
+    },
+}));

@@ -58,7 +58,7 @@ export default function Header() {
                 <Button href="#feedback">Depoimentos</Button>
                 <Button href="#plans">Planos</Button>
                 <Button variant="outlined" color="primary" style={{ margin: '0 1rem' }} href="/cadastrar">Cadastrar</Button>
-                <Button variant="contained" color="primary"><Login /></Button>
+                <Button  variant="contained" color="primary" href="/login">Entrar</Button>
             </Box>
         </Box>
     )
