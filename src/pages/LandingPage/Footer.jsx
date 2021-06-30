@@ -1,9 +1,11 @@
-import { Box, Typography, Button, IconButton } from '@material-ui/core'
+import { Box, Button, IconButton } from '@material-ui/core'
 import FacebookIcon from '@material-ui/icons/Facebook';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import EmailIcon from '@material-ui/icons/Email';
 import { useFooterStyles } from './styles'
-import logo from 'assets/white-text-logo.svg'
+import logo from 'assets/white-text-logo.svg';
+
+import { Copyright } from 'components';
 
 export default function Footer(){
     const classes = useFooterStyles();
@@ -33,8 +35,7 @@ export default function Footer(){
                     <EmailIcon color="secondary"/>
                 </IconButton>
             </Box>
-
-            <Typography style={{color: 'white'}} align="center">© Copyright 2021 Easy Quant todos os direitos reservados</Typography>
+            <Copyright style={{color: 'white'}}/>
         </Box>
     )
 }

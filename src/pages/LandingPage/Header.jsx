@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Box, IconButton, Menu, MenuItem, Button } from '@material-ui/core';
-import { Login, SignUp } from 'components';
+import { Box, IconButton, Menu, MenuItem, Button, Link } from '@material-ui/core';
+import { Login } from 'components';
 import MenuIcon from '@material-ui/icons/Menu';
 import textLogo from 'assets/black-text-logo.svg';
 import { useHeaderStyles } from './styles';
@@ -42,8 +42,8 @@ export default function Header() {
                     <MenuItem onClick={() => jumpTo('why')}>Por Que?</MenuItem>
                     <MenuItem onClick={() => jumpTo('feedback')}>Depoimentos</MenuItem>
                     <MenuItem onClick={() => jumpTo('plans')}>Planos</MenuItem>
-                    <MenuItem><Login /></MenuItem>
-                    <MenuItem onClick={handleClose}><SignUp /></MenuItem>
+                    <MenuItem component={Link} to="/cadastrar"><Login /></MenuItem>
+                    <MenuItem onClick={handleClose}>Cadastrar</MenuItem>
                 </Menu>
             </Box>
         )
@@ -57,7 +57,7 @@ export default function Header() {
                 <Button href="#why">Por Que?</Button>
                 <Button href="#feedback">Depoimentos</Button>
                 <Button href="#plans">Planos</Button>
-                <Button variant="outlined" color="primary" style={{ margin: '0 1rem' }}><SignUp /></Button>
+                <Button variant="outlined" color="primary" style={{ margin: '0 1rem' }} href="/cadastrar">Cadastrar</Button>
                 <Button variant="contained" color="primary"><Login /></Button>
             </Box>
         </Box>

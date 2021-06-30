@@ -5,6 +5,7 @@ import { ResponsiveDrawer, Error404, LoadingScreen } from 'components'
 
 export default function Routes() {
   const Login = lazy(() => import('pages/Login'));
+  const SignUp = lazy(() => import('pages/SignUp'));
   const LandingPage = lazy(() => import('pages/LandingPage'));
   const Momentum = lazy(() => import('pages/Momentum'));
   const Blog = lazy(() => import('pages/Blog'));
@@ -18,6 +19,7 @@ export default function Routes() {
       <Switch>
         <Route exact path='/404' component={Error404} />
         <GuestRoute exact path='/home' component={LandingPage} />
+        <GuestRoute exact path='/cadastrar' component={SignUp} />
         <GuestRoute exact path='/login' component={Login} />
         <GuestRoute exact path='/esqueci-minha-senha' component={ForgotPassword}/>
         <GuestRoute exact path='/nova-senha' component={NewPassword}/>
