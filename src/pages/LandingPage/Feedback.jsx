@@ -41,25 +41,8 @@ export default function Feedback() {
                         picture={leonardosiqueira}
                         linkTo="https://www.instagram.com/leonardosiqueirabr/"
                     />
-
-                    <Card
-                        name="Carlos da Silva"
-                        text="Não sou da área, então aprender programação para depois aprender finanças é inviável. A EQ é um grande atalho"
-                        picture={profilePic}
-                    />
-
-                    <Card
-                        name="Carlos da Silva"
-                        text="Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                 accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae 
-                 ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
-                  explicabo."
-                        picture={profilePic}
-                    />
                 </Box>
             </Fade>
         </Box>
     )
 }
-
-const profilePic = "https://o.aolcdn.com/images/dimse/5845cadfecd996e0372f/9f0ca92e753493a62191831229cf2f459cb2c1ce/Y3JvcD00NTAlMkM0NTAlMkMwJTJDMCZxdWFsaXR5PTg1JmZvcm1hdD1qcGcmcmVzaXplPTE2MDAlMkMxNjAwJmltYWdlX3VyaT1odHRwcyUzQSUyRiUyRnMueWltZy5jb20lMkZvcyUyRmNyZWF0ci11cGxvYWRlZC1pbWFnZXMlMkYyMDE5LTAxJTJGZDBlZmM4ZDAtMjRhNS0xMWU5LTllNmEtNWUwZjJhY2U5ZGNjJmNsaWVudD1hMWFjYWMzZTFiMzI5MDkxN2Q5MiZzaWduYXR1cmU9Y2FiZWI1NWMyYjI5NTgyOTc0NTc4YzM0OWMxMWNlZmUwYzU4MWE1YQ=="
