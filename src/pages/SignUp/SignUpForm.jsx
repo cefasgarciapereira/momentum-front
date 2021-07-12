@@ -238,7 +238,7 @@ export default function SignUp() {
                                     }}
                                 >
                                     <option value="monthly">Mensal - R$19,90 / mês</option>
-                                    <option value="quarterly">Trimestral - R$109,90 / semestre</option>
+                                    <option value="semiannually">Trimestral - R$109,90 / semestre</option>
                                     <option value="annual">Anual - R$ 189,90 / ano</option>
                                 </Select>
                             </FormControl>

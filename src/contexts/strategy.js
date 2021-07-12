@@ -12,9 +12,9 @@ const StrategyContext = createContext();
 
 const initialFilter = {
     type: "momentum",
-    universe: 'IBOV',
-    look_back: 12,
-    port_size: 15
+    universe: 'IBRA',
+    look_back: 6,
+    port_size: 10
 }
 
 const StrategyProvider = ({ children }) => {

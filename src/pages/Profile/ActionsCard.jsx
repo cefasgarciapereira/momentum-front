@@ -100,7 +100,7 @@ export default function ActionsCard() {
                                 }}
                             >
                                 <option value="monthly">Mensal - R$29,90 / mês</option>
-                                <option value="quarterly">Trimestral - R$73,90 / trimestre</option>
+                                <option value="semiannually">Trimestral - R$73,90 / trimestre</option>
                                 <option value="annual">Anual - R$ 238,90 / ano</option>
                             </Select>
                         </FormControl>
