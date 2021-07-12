@@ -14,6 +14,7 @@ export default function Routes() {
   const ForgotPassword = lazy(() => import('pages/ForgotPassword'))
   const NewPassword = lazy(() => import('pages/ForgotPassword/NewPassword'))
   const Profile = lazy(() => import('pages/Profile'))
+  const UseTerms = lazy(() => import('pages/UseTerms'))
 
   useEffect(() => {
     gtm.initialize('G-DXXF86J5D9');
@@ -28,6 +29,7 @@ export default function Routes() {
         <GuestRoute exact path='/login' component={Login} />
         <GuestRoute exact path='/esqueci-minha-senha' component={ForgotPassword} />
         <GuestRoute exact path='/nova-senha' component={NewPassword} />
+        <GuestRoute exact path='/termos-de-uso' component={UseTerms} />
         <AuthRoute
           path='/'
           render={(props) => (

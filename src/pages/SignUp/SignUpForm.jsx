@@ -19,6 +19,7 @@ import {
     FormHelperText
 } from '@material-ui/core';
 import Cards from 'react-credit-cards';
+import { useSnackbar } from 'notistack';
 
 import { useSession } from 'contexts/session';
 import { Copyright, MaskedInput, Logo } from 'components';
@@ -53,6 +54,8 @@ export default function SignUp() {
     const [values, setValues] = useState(initialValues)
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
+    const [accepted, setAccepted] = useState(false)
+    const { enqueueSnackbar } = useSnackbar();
 
     const handleChange = (event) => {
         setValues({
@@ -71,20 +74,24 @@ export default function SignUp() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        let params = values;
-        params.card_exp_month = values.card_expiry.split('/')[0]
-        params.card_exp_year = values.card_expiry.split('/')[1]
-        params.plan_id = plans[values.plan]
-        setLoading(true);
-        registerAndSubscribe(params)
-        .then(res => {
-            console.log(res)
-            setLoading(false)
-        })
-        .catch(err => {
-            setError(err.message)
-            setLoading(false)
-        })
+        if (accepted) {
+            let params = values;
+            params.card_exp_month = values.card_expiry.split('/')[0]
+            params.card_exp_year = values.card_expiry.split('/')[1]
+            params.plan_id = plans[values.plan]
+            setLoading(true);
+            registerAndSubscribe(params)
+            .then(res => {
+                console.log(res)
+                setLoading(false)
+            })
+            .catch(err => {
+                setError(err.message)
+                setLoading(false)
+            })
+        } else {
+            enqueueSnackbar('Você deve concordar com os termos de uso.', { variant: "error" })
+        }
     }
 
 
@@ -92,7 +99,7 @@ export default function SignUp() {
         <Container component="main" maxWidth="xs">
             <CssBaseline />
             <div className={classes.paper}>
-                <Logo style={{width: '50%'}}/>
+                <Logo style={{ width: '50%' }} />
                 <form className={classes.form} noValidate>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
@@ -318,8 +325,8 @@ export default function SignUp() {
 
                         <Grid item xs={12}>
                             <FormControlLabel
-                                control={<Checkbox value="agree" color="primary" />}
-                                label="Afirmo que estou de acordo com os Termos de Uso."
+                                control={<Checkbox value={accepted} color="primary" onChange={() => setAccepted(!accepted)} />}
+                                label={<Typography>Afirmo que estou de acordo com os <Link href="/termos-de-uso"><b>Termos de Uso</b></Link>.</Typography>}
                             />
                         </Grid>
                     </Grid>
