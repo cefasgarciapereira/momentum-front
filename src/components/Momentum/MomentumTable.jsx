@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     Box,
     Table,
@@ -9,21 +9,28 @@ import {
     TableRow,
     Paper,
     LinearProgress,
-    Typography
+    Typography,
+    Button
 } from '@material-ui/core';
 import { useStrategy } from 'contexts/strategy';
 import { capitalize } from 'utils/helper';
 import { useMomenutumStyles } from './styles';
+import PriceChart from './PriceChart';
 
 export default function MomentumTable() {
     const classes = useMomenutumStyles();
     const { momentum, loading } = useStrategy();
+    const [priceChart, setPriceChart] = useState(null)
+
+    const closePriceChart = () => {
+        setPriceChart(null)
+    }
 
     return (
         <Box>
             {
                 momentum &&
-                <Box fullWidth display="flex" flexDirection={{xs: 'column', lg: 'row'}} alignItems={{xs: 'flex-start', lg: "center"}} style={{ gap: '1rem' }}>
+                <Box fullWidth display="flex" flexDirection={{ xs: 'column', lg: 'row' }} alignItems={{ xs: 'flex-start', lg: "center" }} style={{ gap: '1rem' }}>
                     <Typography variant="h4">{capitalize(momentum.type)}</Typography>
                     <Typography variant="h4">{momentum.universe}</Typography>
                     <Typography variant="h4">{momentum.date}</Typography>
@@ -42,15 +49,26 @@ export default function MomentumTable() {
                         {momentum && momentum.response.map((row) => (
                             <TableRow key={row.signal}>
                                 <TableCell component="th" scope="row">
-                                    {row.stock}
+                                    <Button 
+                                    onClick={() => setPriceChart(row.stock)}
+                                    variant="outlined" 
+                                    color="primary" 
+                                    style={{ width: 100 }}>
+                                        {row.stock}
+                                    </Button>
                                 </TableCell>
                                 <TableCell align="left">{parseFloat(row.signal).toFixed(2)}</TableCell>
                                 <TableCell align="left">{parseFloat(row.risk_parity * 100).toFixed(2)}%</TableCell>
                             </TableRow>
+
                         ))}
                     </TableBody>
                 </Table>
                 {loading && <LinearProgress />}
+                <PriceChart 
+                price={priceChart}
+                visible={priceChart} 
+                handleClose={closePriceChart} />
             </TableContainer>
         </Box>
     );

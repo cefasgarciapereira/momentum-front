@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Paper, Typography } from '@material-ui/core'
 import { Line } from '@reactchartjs/react-chart.js'
 import { useStrategy } from 'contexts/strategy';
-import useDeviceDetect from 'utils/useDeviceDetect';
+import { useDeviceDetect } from 'utils/hooks';
 
 export default function MultiAxisLine() {
   const { backtest, loading } = useStrategy();

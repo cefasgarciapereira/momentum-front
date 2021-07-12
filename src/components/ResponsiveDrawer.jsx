@@ -14,11 +14,12 @@ import {
   Typography,
   Toolbar
 } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 import TimelineOutlinedIcon from '@material-ui/icons/TimelineOutlined';
 import MenuIcon from '@material-ui/icons/Menu';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import DescriptionIcon from '@material-ui/icons/Description';
+import PersonIcon from '@material-ui/icons/Person';
 import { generateAvatar } from 'utils/helper';
 import { useSession } from 'contexts/session';
 import { useTheme } from '@material-ui/core/styles';
@@ -48,18 +49,22 @@ function ResponsiveDrawer(props) {
       </List>
       <Divider />
       <List>
-        <ListItem component={Link} to='/blog' style={{ gap: '1rem', textDecoration: 'none' }}>
+        <ListItem component={RouterLink} to='/blog' color="primary" button>
           <ListItemIcon><DescriptionIcon /></ListItemIcon>
           <Typography>Blog</Typography>
         </ListItem>
-        <ListItem component={Link} to='/momentum' style={{ gap: '1rem', textDecoration: 'none' }}>
+        <ListItem component={RouterLink} to='/momentum' color="primary" button>
           <ListItemIcon><TimelineOutlinedIcon /></ListItemIcon>
           <Typography>Estratégias</Typography>
         </ListItem>
       </List>
       <Divider />
       <List>
-        <ListItem button style={{ gap: '1rem' }} onClick={logout} active>
+        <ListItem component={RouterLink} to='/perfil' color="primary" button>
+          <ListItemIcon><PersonIcon /></ListItemIcon>
+          <Typography>Perfil</Typography>
+        </ListItem>
+        <ListItem component={RouterLink} to='/' color="primary" onClick={logout} button>
           <ListItemIcon><ExitToAppIcon /></ListItemIcon>
           <Typography>Sair</Typography>
         </ListItem>
@@ -83,9 +88,9 @@ function ResponsiveDrawer(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap style={{fontFamily: 'Vudotronic'}}>
-            <div style={{width: 120, height: 32}}>
-              <img src={easyquant} style={{width: '100%', objectFit: 'contain'}} alt="easyquant logotipo"/>
+          <Typography variant="h6" noWrap style={{ fontFamily: 'Vudotronic' }}>
+            <div style={{ width: 120, height: 32 }}>
+              <img src={easyquant} style={{ width: '100%', objectFit: 'contain' }} alt="easyquant logotipo" />
             </div>
           </Typography>
         </Toolbar>

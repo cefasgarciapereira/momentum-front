@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
-import { 
-    TextField, 
-    Box,
+import {
+    TextField,
     Button,
     CircularProgress,
     FormHelperText
@@ -17,7 +16,7 @@ const initialState = {
     password_confirmation: '',
 }
 
-export default function SignUpForm(props){
+export default function SignUpForm(props) {
     const { navigateTo } = props;
     const { register, error, user, cleanError } = useSession();
     const [values, setValues] = useState(initialState);
@@ -36,90 +35,91 @@ export default function SignUpForm(props){
     };
 
     const handleInstagramAt = (e) => {
-        if(e.target.value && e.target.value[0] !== '@'){
-            setValues({...values, instagram_at: `@${e.target.value}`})
+        if (e.target.value && e.target.value[0] !== '@') {
+            setValues({ ...values, instagram_at: `@${e.target.value}` })
         }
     }
 
-    const handleSubmit = async () =>{
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         setLoading(true);
         await register(values)
         setLoading(false);
     }
 
-    return(
-        <Box width={'100%'} style={{display: 'flex', flexDirection: 'column', gap: '1rem', margin: '2rem 0', overflow: 'auto'}}>
+    return (
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem', padding: '2rem 0', overflow: 'auto' }}>
             <TextField
-            fullWidth
-            value={values.name}
-            onChange={handleChange('name')}
-            label="Nome Completo"
-            variant="outlined"
-            required
+                fullWidth
+                value={values.name}
+                onChange={handleChange('name')}
+                label="Nome Completo"
+                variant="outlined"
+                required
             />
 
             <TextField
-            fullWidth
-            value={values.email}
-            onChange={handleChange('email')}
-            label="E-mail"
-            variant="outlined"
-            required
+                fullWidth
+                value={values.email}
+                onChange={handleChange('email')}
+                label="E-mail"
+                variant="outlined"
+                required
             />
 
             <TextField
-            fullWidth
-            value={values.instagram_at}
-            onChange={handleChange('instagram_at')}
-            onBlur={handleInstagramAt}
-            label="@instagram"
-            variant="outlined"
-            required
+                fullWidth
+                value={values.instagram_at}
+                onChange={handleChange('instagram_at')}
+                onBlur={handleInstagramAt}
+                label="@instagram"
+                variant="outlined"
+                required
             />
 
             <TextField
-            fullWidth
-            value={values.password}
-            onChange={handleChange('password')}
-            label="Senha"
-            variant="outlined"
-            type="password"
-            required
+                fullWidth
+                value={values.password}
+                onChange={handleChange('password')}
+                label="Senha"
+                variant="outlined"
+                type="password"
+                required
             />
 
             <TextField
-            fullWidth
-            value={values.password_confirmation}
-            onChange={handleChange('password_confirmation')}
-            label="Confirme sua senha"
-            variant="outlined"
-            type="password"
-            required
+                fullWidth
+                value={values.password_confirmation}
+                onChange={handleChange('password_confirmation')}
+                label="Confirme sua senha"
+                variant="outlined"
+                type="password"
+                required
             />
 
             <Button
-            fullWidth
-            label="Cadastrar"
-            variant="contained"
-            color="primary"
-            loading='true'
-            endIcon={loading && <CircularProgress color="white" size={24} />}
-            onClick={handleSubmit}
+                fullWidth
+                label="Cadastrar"
+                variant="contained"
+                color="primary"
+                loading='true'
+                endIcon={loading && <CircularProgress color="white" size={24} />}
+                onClick={handleSubmit}
+                type="submit"
             >
                 Cadastrar
             </Button>
-            
+
             <Button
-            fullWidth
-            label="Entrar"
-            variant="outlined"
-            color="primary"
-            onClick={handleNavigation}
+                fullWidth
+                label="Entrar"
+                variant="outlined"
+                color="primary"
+                onClick={handleNavigation}
             >
                 Cancelar
             </Button>
             <FormHelperText error>{error}</FormHelperText>
-        </Box>
-
+        </form>
     )
 }

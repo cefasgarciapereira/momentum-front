@@ -5,19 +5,21 @@ import {
     useContext
 } from 'react';
 import { useSession } from 'contexts/session';
+import { useApi } from 'utils/hooks';
 import { useSnackbar } from 'notistack';
 
 const StrategyContext = createContext();
 
 const initialFilter = {
     type: "momentum",
-    universe: 'IBOV',
-    look_back: 12,
-    port_size: 15
+    universe: 'IBRA',
+    look_back: 6,
+    port_size: 10
 }
 
 const StrategyProvider = ({ children }) => {
-    const { fetchApi, user } = useSession();
+    const { user } = useSession();
+    const { api } = useApi();
     const { enqueueSnackbar } = useSnackbar();
     const [momentum, setMomentum] = useState();
     const [filter, setFilter] = useState(initialFilter);
@@ -26,36 +28,40 @@ const StrategyProvider = ({ children }) => {
 
     const filterMomentum = () => {
         setLoading(true);
-        fetchApi('strategy/search', filter)
-            .then(response => {
-                if (!response.data.strategy) {
-                    enqueueSnackbar('Essa estratégia não foi encontrada 😔', { variant: "info" })
-                } else {
-                    setMomentum(response.data.strategy)
-                }
-                setLoading(false);
-            })
-            .catch(err => {
-                console.log(err)
-                setLoading(false);
-            })
+        api.get('/strategy/search', {
+            params: {...filter}
+        })
+        .then(response => {
+            if (!response.data.strategy) {
+                enqueueSnackbar('Essa estratégia não foi encontrada 😔', { variant: "info" })
+            } else {
+                setMomentum(response.data.strategy)
+            }
+            setLoading(false);
+        })
+        .catch(err => {
+            console.log(err)
+            setLoading(false);
+        })
     }
 
     const filterBacktest = () => {
         setLoading(true);
-        fetchApi('backtest/search', filter)
-            .then(response => {
-                if (!response.data.backtest) {
-                    enqueueSnackbar('Esse backtest não foi encontrada 😔', { variant: "info" })
-                } else {
-                    setBacktest(response.data.backtest)
-                }
-                setLoading(false);
-            })
-            .catch(err => {
-                console.log(err)
-                setLoading(false);
-            })
+        api.get('/backtest/search', {
+            params: {...filter}
+        })
+        .then(response => {
+            if (!response.data.backtest) {
+                enqueueSnackbar('Esse backtest não foi encontrada 😔', { variant: "info" })
+            } else {
+                setBacktest(response.data.backtest)
+            }
+            setLoading(false);
+        })
+        .catch(err => {
+            console.log(err)
+            setLoading(false);
+        })
     }
 
     const applyFilter = () => {

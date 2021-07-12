@@ -32,7 +32,7 @@ export default function Post(){
         <Box className={classes.container}>
             <Box className={classes.inner}>
                 <Box display='flex' alignItems="center" justifyContent="center">
-                    <Typography className={classes.title} variant="h2" align="center">
+                    <Typography className={classes.title} variant="h3" align="center">
                         {post.title[0].text}
                     </Typography>
                 </Box>

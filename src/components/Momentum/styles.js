@@ -11,4 +11,10 @@ export const useMomenutumStyles = makeStyles({
         width: '100%',
       }
     },
+    tableRow:{
+      '& :hover':{
+        cursor: 'pointer',
+        backgroundColor: 'rgba(0,0,0,.1)'
+      }
+    }
   });

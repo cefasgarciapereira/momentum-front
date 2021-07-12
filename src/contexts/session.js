@@ -6,9 +6,9 @@ import {
 } from 'react';
 import jwt_decode from "jwt-decode";
 import axios from 'axios';
+import { parseError } from 'utils/helper';
 const SessionContext = createContext();
 
-//const BASE_URL = 'https://homolog-momentum-api.herokuapp.com'
 const BASE_URL = process.env.REACT_APP_ENV === 'prod' ? "https://easyquant-api.herokuapp.com" :
     process.env.REACT_APP_ENV === 'homolog' ? "https://homolog-momentum-api.herokuapp.com" : 'http://localhost:9000'
 
@@ -18,24 +18,39 @@ const SessionProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [error, setError] = useState(false);
 
-    const register = async (newUser) => {
+    const registerWithCloseFriends = async (newUser) => {
         if (newUser.password === newUser.password_confirmation) {
-            await axios.post(`${BASE_URL}/user/register`, { ...newUser })
-                .then(response => {
-                    const decoded = jwt_decode(response.data.token);
-                    setUser({ ...decoded.user, token: response.data.token, refreshToken: response.data.refreshToken });
-                    setError(false);
-                })
-                .catch(err => {
-                    console.log(err);
-                    try {
-                        setError(err.response.data.error ? err.response.data.error : `${err.name}: ${err.message}`);
-                    } catch (err) {
-                        setError(`${err}`);
-                    }
-                })
+            try {
+                const response = await axios.post(`${BASE_URL}/user/registerWithCloseFriends`, { ...newUser })
+                const decoded = jwt_decode(response.data.token);
+                setUser({
+                    ...decoded.user,
+                    token: response.data.token,
+                });
+                return response
+            } catch (err) {
+                throw new Error(parseError(err));
+            }
         } else {
-            setError('As senhas não coincidem.')
+            throw new Error("As senhas não coincidem");
+        }
+    }
+
+    const registerAndSubscribe = async (newUser) => {
+        if (newUser.password === newUser.password_confirmation) {
+            try {
+                const response = await axios.post(`${BASE_URL}/user/registerAndSubscribe`, { ...newUser })
+                const decoded = jwt_decode(response.data.token);
+                setUser({
+                    ...decoded.user,
+                    token: response.data.token,
+                });
+                return response
+            } catch (err) {
+                throw new Error(parseError(err));
+            }
+        } else {
+            throw new Error("As senhas não coincidem");
         }
     }
 
@@ -48,43 +63,20 @@ const SessionProvider = ({ children }) => {
             })
             .catch(err => {
                 console.log(err);
-                try {
-                    setError(err.response.data.error ? err.response.data.error : `${err.name}: ${err.message}`);
-                } catch (err) {
-                    setError(`${err}`);
+                if (err.response.data.error.message) {
+                    setError(err.response.data.error.message);
+                }
+                else if (err.response.data.error) {
+                    setError(err.response.data.error);
+                } else {
+                    setError(`Um erro inesperado ocorreu durante o login: ${error}`)
                 }
             })
     }
 
-    const fetchApi = async (endpoint, bodyParams = {}, method = "GET") => {
-        if (user) {
-            if (method === "GET") {
-                const response = await axios.get(`${BASE_URL}/${endpoint}`, {
-                    headers: { Authorization: `Bearer ${user.token}` },
-                    params: { ...bodyParams }
-                })
-                return response;
-            }
-
-            if (method === "POST") {
-
-                const config = {
-                    headers: { Authorization: `Bearer ${user.token}` },
-                }
-
-                const response = await axios.post(`${BASE_URL}/${endpoint}`, bodyParams, config)
-                return response;
-            }
-        }
-
-        if (!user) {
-            throw new Error('A user must be logged to call this action.');
-        }
-    }
-
-    const closeWelcomeMessage = async () => {
-        await fetchApi('user/hideMessage', { user: user }, "POST")
-        setUser({ ...user, welcome_message: false })
+    const updateUser = (tokenizedUser) => {
+        const decoded = jwt_decode(tokenizedUser);
+        setUser({ ...user, ...decoded.user, token: tokenizedUser });
     }
 
     const logout = async () => {
@@ -156,17 +148,34 @@ const SessionProvider = ({ children }) => {
         isAuthenticated();
     }, [user])
 
+
+    const requestNewPassword = async (email) => {
+        const res = await axios.post(`${BASE_URL}/user/requestNewPassword`, { email: email, env: process.env.REACT_APP_ENV })
+        return res;
+    }
+
+    const resetPassword = async (params) => {
+        const res = await axios.post(`${BASE_URL}/user/resetPassword`, {
+            token: params.token,
+            email: params.email,
+            newPassword: params.newPassword
+        })
+        return res;
+    }
+
     return (
         <SessionContext.Provider
             value={{
                 user,
                 error,
-                closeWelcomeMessage,
                 cleanError,
-                register,
+                registerWithCloseFriends,
+                registerAndSubscribe,
                 login,
                 logout,
-                fetchApi
+                updateUser,
+                requestNewPassword,
+                resetPassword
             }}>
             {children}
         </SessionContext.Provider>
