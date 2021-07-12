@@ -28,7 +28,7 @@ export default function Stats() {
                             <TableCell align="left">Média</TableCell>
                             <TableCell align="left">Mediana</TableCell>
                             <TableCell align="left">Desvio Padrão</TableCell>
-                            <TableCell align="left">Média/Desvio Padrão</TableCell>
+                            <TableCell align="left">Retorno por unidade de risco</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
