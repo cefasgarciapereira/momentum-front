@@ -74,7 +74,7 @@ export default function SignUp() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (accepted) {
+        if (validated()) {
             let params = values;
             params.card_exp_month = values.card_expiry.split('/')[0]
             params.card_exp_year = values.card_expiry.split('/')[1]
@@ -89,9 +89,28 @@ export default function SignUp() {
                     setError(err.message)
                     setLoading(false)
                 })
-        } else {
-            enqueueSnackbar('Você deve concordar com os termos de uso.', { variant: "error" })
         }
+    }
+
+    function validated() {
+        let res = true
+
+        if (!accepted) {
+            enqueueSnackbar('Você deve concordar com os termos de uso.', { variant: "error" })
+            res = false
+        }
+
+        if (values.email !== values.emailConfirmation) {
+            enqueueSnackbar('Os emails não coincidem.', { variant: "error" })
+            res = false
+        }
+
+        if (values.password !== values.password_confirmation) {
+            enqueueSnackbar('As senhas não coincidem.', { variant: "error" })
+            res = false
+        }
+
+        return res
     }
 
 
@@ -122,17 +141,6 @@ export default function SignUp() {
                             />
                         </Grid>
                         <Grid item xs={12}>
-                            <TextField
-                                fullWidth
-                                value={values.email}
-                                onChange={handleChange}
-                                label="E-mail"
-                                name="email"
-                                variant="outlined"
-                                required
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
                             <MaskedInput
                                 fullWidth
                                 value={values.phone}
@@ -145,7 +153,28 @@ export default function SignUp() {
                                 mask="(99) 9999-9999"
                             />
                         </Grid>
-
+                        <Grid item xs={12}>
+                            <TextField
+                                fullWidth
+                                value={values.email}
+                                onChange={handleChange}
+                                label="E-mail"
+                                name="email"
+                                variant="outlined"
+                                required
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                fullWidth
+                                value={values.emailConfirmation}
+                                onChange={handleChange}
+                                label="Confirme seu e-mail"
+                                name="emailConfirmation"
+                                variant="outlined"
+                                required
+                            />
+                        </Grid>
                         <Grid item xs={12}>
                             <TextField
                                 fullWidth
@@ -383,6 +412,7 @@ export default function SignUp() {
 const initialValues = {
     name: '',
     email: '',
+    emailConfirmation: '',
     phone: '',
     instagram_at: '',
     password: '',
