@@ -81,14 +81,14 @@ export default function SignUp() {
             params.plan_id = plans[values.plan]
             setLoading(true);
             registerAndSubscribe(params)
-            .then(res => {
-                console.log(res)
-                setLoading(false)
-            })
-            .catch(err => {
-                setError(err.message)
-                setLoading(false)
-            })
+                .then(res => {
+                    console.log(res)
+                    setLoading(false)
+                })
+                .catch(err => {
+                    setError(err.message)
+                    setLoading(false)
+                })
         } else {
             enqueueSnackbar('Você deve concordar com os termos de uso.', { variant: "error" })
         }
@@ -370,6 +370,11 @@ export default function SignUp() {
             </div>
             <Box mt={5}>
                 <Copyright />
+                <Grid container justify="center" align="center" fullWidth>
+                    <Grid item>
+                        <FormHelperText>Fale conosco: contato@easyquant.com.br</FormHelperText>
+                    </Grid>
+                </Grid>
             </Box>
         </Container>
     );
