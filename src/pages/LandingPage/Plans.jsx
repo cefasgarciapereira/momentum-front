@@ -6,7 +6,7 @@ import { usePlansStyles } from './styles'
 export default function Plans() {
     const classes = usePlansStyles();
 
-    const Card = ({ title, price }) => (
+    /*const Card = ({ title, price }) => (
         <Paper className={classes.paper} elevation={5}>
             <Typography variant="h5">{title}</Typography>
             <Typography align="center" variant="h3">{price}</Typography>
@@ -14,13 +14,27 @@ export default function Plans() {
                 Começar
             </Button>
         </Paper>
+    )*/
+
+    const PromotionCard = ({ title, price, promotionalPrice }) => (
+        <Paper className={classes.paper} elevation={5}>
+            <Typography variant="h5">{title}</Typography>
+            <Typography align="center" variant="h4" className={classes.lined}>
+                {price}
+            </Typography>
+            <Typography align="center" variant="h3">{promotionalPrice}</Typography>
+            <Typography align="center">válido até 31/08/2021</Typography>
+            <Button variant="contained" color="primary" href="/cadastrar">
+                Começar
+            </Button>
+        </Paper >
     )
 
     return (
         <Box className={classes.root} id="plans">
             <Typography variant="h4" align="center" className={classes.title}>
                 Comece agora a melhorar
-                seus investimentos
+                seus investimentos com nossos valores promocionais de lançamento
             </Typography>
 
             <Typography variant="h6" align="center" className={classes.subtitle}>
@@ -30,21 +44,22 @@ export default function Plans() {
 
             <Fade bottom cascade>
                 <Box className={classes.cardsContainer}>
-
-                    <Card
+                    <PromotionCard
                         title="Mensal"
-                        price="R$ 19,90"
+                        price="R$ 39,90"
+                        promotionalPrice="R$ 19,90"
                     />
-                    <Card
+                    <PromotionCard
                         title="Semestral"
-                        price="R$ 109,90"
+                        price="R$ 219,90"
+                        promotionalPrice="R$ 109,90"
                     />
-                    <Card
+                    <PromotionCard
                         title="Anual"
-                        price="R$ 189,90"
+                        price="R$ 379,90"
+                        promotionalPrice="R$ 189,90"
                     />
                 </Box>
-
             </Fade>
         </Box>
     )

@@ -237,7 +237,7 @@ export const usePlansStyles = makeStyles((theme) => ({
     },
     title: {
         fontWeight: 'bold',
-        maxWidth: '600px',
+        maxWidth: '800px',
         alignSelf: 'center',
 
         [theme.breakpoints.up('md')]: {
@@ -270,11 +270,14 @@ export const usePlansStyles = makeStyles((theme) => ({
         alignItems: 'center',
         justifiContent: 'center',
         padding: '1rem',
-        gap: '6rem',
+        gap: '3rem',
         maxWidth: '250px',
         width: '100%',
         alignSelf: 'center'
     },
+    lined: {
+        textDecoration: "line-through !important"
+    }
 }))
 
 export const useFooterStyles = makeStyles((theme) => ({

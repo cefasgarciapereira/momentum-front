@@ -22,7 +22,8 @@ export default function CustomerCard() {
     const intervals = {
         year: 'ano',
         month: 'mês',
-        quarter: 'trimestre'
+        quarter: 'trimestre',
+        semiannualy: 'semestre'
     }
 
     const pluralIntervals = {
