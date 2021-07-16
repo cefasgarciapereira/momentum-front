@@ -42,7 +42,7 @@ export default function Hero() {
                         <InstagramIcon />
                     </IconButton>
 
-                    <IconButton>
+                    <IconButton href="mailto: contato@easyquant.com.br">
                         <EmailIcon />
                     </IconButton>
                 </Fade>
