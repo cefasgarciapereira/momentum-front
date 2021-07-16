@@ -1,5 +1,5 @@
 import React, { lazy, Suspense, useEffect } from 'react';
-import { Switch, Redirect, Route } from 'react-router-dom';
+import { Switch, Redirect, HashRouter, Route } from 'react-router-dom';
 import { AuthRoute, GuestRoute } from 'components/Auth';
 import { ResponsiveDrawer, Error404, LoadingScreen } from 'components'
 import gtm from 'utils/googleAnalytics';
@@ -24,7 +24,7 @@ export default function Routes() {
 
   return (
     <Suspense fallback={<LoadingScreen />}>
-      <Switch>
+      <HashRouter>
         <Route exact path='/404' component={Error404} />
         <GuestRoute exact path='/home' component={LandingPage} />
         <GuestRoute exact path='/cadastrar' component={SignUp} />
@@ -51,7 +51,7 @@ export default function Routes() {
             </ResponsiveDrawer>
           )}
         />
-      </Switch>
+      </HashRouter>
     </Suspense>
   );
 }
