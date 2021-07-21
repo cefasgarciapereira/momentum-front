@@ -40,7 +40,10 @@ export default function ActionsCard() {
 
     const cancelSubscription = () => {
         api.post("/user/cancel_subscription", { subscription_id: user.subscription_id })
-            .then(() => enqueueSnackbar('O cancelamento da sua assinatura foi agendado para o próximo vencimento.', { variant: "success", onClose:refreshPage}))
+            .then(() => {
+                enqueueSnackbar('O cancelamento da sua assinatura foi agendado para o próximo vencimento.', { variant: "success", onClose:refreshPage})
+                document.location.href = 'https://docs.google.com/forms/d/e/1FAIpQLSfmDNglKZgPqh_sPgGZI5zLeVOD0YGQEOcfgQyfl8RCbEp4hA/viewform'
+            })
             .catch(() => enqueueSnackbar('Não foi possível cancelar sua assinatura.', { variant: "error" }))
     }
 
