@@ -270,7 +270,7 @@ export const usePlansStyles = makeStyles((theme) => ({
         alignItems: 'center',
         justifiContent: 'center',
         padding: '1rem',
-        gap: '3rem',
+        gap: '1.5rem',
         maxWidth: '250px',
         width: '100%',
         alignSelf: 'center'
